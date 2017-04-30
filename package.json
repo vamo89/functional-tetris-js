@@ -1,0 +1,24 @@
+{
+  "name": "fuctional-tetris",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava",
+    "lint": "standard",
+    "dev": "chokidar '**/*.js' -c 'standard && ava'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "pre-commit": [
+    "test",
+    "lint"
+  ],
+  "devDependencies": {
+    "ava": "^0.19.1",
+    "chokidar-cli": "^1.2.0",
+    "precommit-hook": "^3.0.0",
+    "standard": "^10.0.2"
+  }
+}
