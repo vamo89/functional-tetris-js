@@ -8,16 +8,10 @@ const maxHeight = 20
 const colors = tetris.colors()
 
 var matrix = tetris.clearMatrix(maxWidth, maxHeight)
-
-matrix = tetris.createPieceWithMatrix(matrix)('I', 0, 0)
-matrix = tetris.createPieceWithMatrix(matrix)('J', 1, 2)
-matrix = tetris.createPieceWithMatrix(matrix)('L', 5, 5)
-matrix = tetris.createPieceWithMatrix(matrix)('O', 9, 3)
-matrix = tetris.createPieceWithMatrix(matrix)('S', 14, 4)
-matrix = tetris.createPieceWithMatrix(matrix)('T', 15, 9)
-matrix = tetris.createPieceWithMatrix(matrix)('Z', 6, 8)
-
-draw(ctx, matrix)
+let lastTime = 0
+let dropCounter = 0
+const dropInterval = 1000
+update()
 
 function draw (ctx, matrix) {
   matrix.forEach((row, y) =>
@@ -28,4 +22,16 @@ function draw (ctx, matrix) {
       }
     })
   )
+}
+
+function update (time = 0) {
+  dropCounter += time - lastTime
+  lastTime = time
+  if (dropCounter > dropInterval) {
+    dropCounter = 0
+    matrix = tetris.createPieceWithMatrix(matrix)('I', 0, 0)
+    draw(ctx, matrix)
+  }
+
+  window.requestAnimationFrame(update)
 }
