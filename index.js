@@ -29,7 +29,7 @@ function update (time = 0) {
   lastTime = time
   if (dropCounter > dropInterval) {
     dropCounter = 0
-    matrix = tetris.createPieceWithMatrix(matrix)('I', 0, 0)
+    matrix = tetris.createNewPiece(matrix)
     draw(ctx, matrix)
   }
 
