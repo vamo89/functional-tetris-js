@@ -47,7 +47,12 @@ function update (time = 0) {
 
 function gameTick () {
   if (tetris.checkLineComplete(matrix)) {
-    playerPoints += tetris.calculatePointsForLineCompletion(matrix)
+    let roundPoints = tetris.calculatePointsForLineCompletion(matrix)
+    if (roundPoints === undefined) {
+      // throw error - cheating detected
+      return
+    }
+    playerPoints += roundPoints
     matrix = tetris.removeCompleteLines(matrix)
   } else if (tetris.checkFloatingPiece(matrix)) {
     matrix = tetris.gravityWork(matrix)
