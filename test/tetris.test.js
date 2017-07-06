@@ -143,37 +143,37 @@ test('Matrix with middle line complete', (t) => {
 
 test('Matrix with last line complete', (t) => {
   let matrix = tetris.clearMatrix()
-  matrix[20] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.is(true, tetris.checkLineComplete(matrix))
 })
 
 test('Matrix with line complete with other than 1s', (t) => {
   let matrix = tetris.clearMatrix()
-  matrix[20] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 6]
+  matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 6]
   t.is(true, tetris.checkLineComplete(matrix))
 })
 
 test('Matrix with line almost complete - first is 0', (t) => {
   let matrix = tetris.clearMatrix()
-  matrix[20] = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  matrix[19] = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.is(false, tetris.checkLineComplete(matrix))
 })
 
 test('Matrix with line almost complete - middle is 0', (t) => {
   let matrix = tetris.clearMatrix()
-  matrix[20] = [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1]
+  matrix[19] = [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1]
   t.is(false, tetris.checkLineComplete(matrix))
 })
 
 test('Matrix with line almost complete - last is 0', (t) => {
   let matrix = tetris.clearMatrix()
-  matrix[20] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
+  matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
   t.is(false, tetris.checkLineComplete(matrix))
 })
 
 test('Matrix with line almost complete - other than 1s', (t) => {
   let matrix = tetris.clearMatrix()
-  matrix[20] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 0]
+  matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 0]
   t.is(false, tetris.checkLineComplete(matrix))
 })
 
@@ -188,13 +188,13 @@ test('Calculate points - no line complete', (t) => {
 
 test('Calculate points - line almost complete', (t) => {
   let matrix = tetris.clearMatrix()
-  matrix[20] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
+  matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
   t.is(0, tetris.calculatePointsForLineCompletion(matrix))
 })
 
 test('Calculate points - line almost complete - other than 1s', (t) => {
   let matrix = tetris.clearMatrix()
-  matrix[20] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 0]
+  matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 0]
   t.is(0, tetris.calculatePointsForLineCompletion(matrix))
 })
 
@@ -205,46 +205,46 @@ test('Calculate points - column complete', (t) => {
 
 test('Calculate points - 1 line complete', (t) => {
   let matrix = tetris.clearMatrix()
-  matrix[20] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.is(40, tetris.calculatePointsForLineCompletion(matrix))
 })
 
 test('Calculate points - 1 line complete - other than 1s', (t) => {
   let matrix = tetris.clearMatrix()
-  matrix[20] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 6]
+  matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 6]
   t.is(40, tetris.calculatePointsForLineCompletion(matrix))
 })
 
 test('Calculate points - 2 lines complete', (t) => {
   let matrix = tetris.clearMatrix()
+  matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  matrix[20] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.is(100, tetris.calculatePointsForLineCompletion(matrix))
 })
 
 test('Calculate points - 3 lines complete', (t) => {
   let matrix = tetris.clearMatrix()
+  matrix[17] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  matrix[20] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.is(300, tetris.calculatePointsForLineCompletion(matrix))
 })
 
 test('Calculate points - 4 lines complete', (t) => {
   let matrix = tetris.clearMatrix()
+  matrix[16] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[17] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  matrix[20] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.is(1200, tetris.calculatePointsForLineCompletion(matrix))
 })
 
 test('Calculate points - more than 4 lines complete', (t) => {
   let matrix = tetris.clearMatrix()
+  matrix[15] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[16] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[17] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  matrix[20] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.is(undefined, tetris.calculatePointsForLineCompletion(matrix))
 })
