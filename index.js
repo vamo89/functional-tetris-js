@@ -29,9 +29,13 @@ function update (time = 0) {
   lastTime = time
   if (dropCounter > dropInterval) {
     dropCounter = 0
-    matrix = tetris.createNewPiece(matrix)
+    matrix = tetris.createNewPiece(matrix, randomPiece())
     draw(ctx, matrix)
   }
 
   window.requestAnimationFrame(update)
+}
+
+function randomPiece () {
+  return ['I', 'J', 'L', 'O', 'S', 'T', 'Z'][Math.floor(Math.random() * 7)]
 }

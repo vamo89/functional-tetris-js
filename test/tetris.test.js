@@ -118,3 +118,13 @@ test('Matrix with unknow piece', (t) => {
   let matrix = tetris.createPieceWithMatrix(tetris.clearMatrix())('M', 0, 0)
   t.deepEqual(tetris.clearMatrix(), matrix)
 })
+
+test('Matrix with piece at origin', (t) => {
+  let matrix = tetris.createNewPiece(tetris.clearMatrix(), 'I')
+  let matrixToTestAgainst = tetris.clearMatrix()
+  matrixToTestAgainst[0][5] = 1
+  matrixToTestAgainst[1][5] = 1
+  matrixToTestAgainst[2][5] = 1
+  matrixToTestAgainst[3][5] = 1
+  t.deepEqual(matrixToTestAgainst, matrix)
+})
