@@ -7,7 +7,7 @@ const maxWidth = 12
 const maxHeight = 20
 const colors = tetris.colors()
 
-var matrix = tetris.clearMatrix(maxWidth, maxHeight)
+let matrix = tetris.clearMatrix(maxWidth, maxHeight)
 let lastTime = 0
 let dropCounter = 0
 const dropInterval = 1000
