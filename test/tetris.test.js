@@ -248,3 +248,22 @@ test('Calculate points - more than 4 lines complete', (t) => {
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.is(undefined, tetris.calculatePointsForLineCompletion(matrix))
 })
+
+test('Remove complete lines - 1 line complete', (t) => {
+  let matrix = tetris.clearMatrix()
+  matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  t.deepEqual(tetris.clearMatrix(), tetris.removeCompleteLines(matrix))
+})
+
+test('Remove complete lines - 1 line complete - other than 1s', (t) => {
+  let matrix = tetris.clearMatrix()
+  matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 6]
+  t.deepEqual(tetris.clearMatrix(), tetris.removeCompleteLines(matrix))
+})
+
+test('Remove complete lines - 2 lines complete', (t) => {
+  let matrix = tetris.clearMatrix()
+  matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  t.deepEqual(tetris.clearMatrix(), tetris.removeCompleteLines(matrix))
+})
