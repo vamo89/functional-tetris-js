@@ -258,21 +258,122 @@ test('Calculate points - more than 4 lines complete', (t) => {
   t.is(tetris.calculatePointsForLineCompletion(matrix), undefined)
 })
 
-test('Remove complete lines - 1 line complete', (t) => {
+test('Remove complete lines - Simple - without other pieces', (t) => {
+  let matrix = [
+    [0, 0],
+    [1, 1]
+  ]
+
+  let matrixToTestAgainst = [
+    [0, 0],
+    [0, 0]
+  ]
+
+  t.deepEqual(tetris.removeCompleteLines(matrix), matrixToTestAgainst)
+})
+
+test('Remove complete lines - Simple - with other pieces', (t) => {
+  let matrix = [
+    [1, 0],
+    [1, 1]
+  ]
+
+  let matrixToTestAgainst = [
+    [0, 0],
+    [1, 0]
+  ]
+
+  t.deepEqual(tetris.removeCompleteLines(matrix), matrixToTestAgainst)
+})
+
+test('Remove complete lines - 1 line complete - without other pieces', (t) => {
   let matrix = tetris.clearMatrix()
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.deepEqual(tetris.removeCompleteLines(matrix), tetris.clearMatrix())
 })
 
-test('Remove complete lines - 1 line complete - other than 1s', (t) => {
+test('Remove complete lines - 1 line complete - other than 1s - without other pieces', (t) => {
   let matrix = tetris.clearMatrix()
   matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 6]
   t.deepEqual(tetris.removeCompleteLines(matrix), tetris.clearMatrix())
 })
 
-test('Remove complete lines - 2 lines complete', (t) => {
+test('Remove complete lines - 2 lines complete - without other pieces', (t) => {
   let matrix = tetris.clearMatrix()
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.deepEqual(tetris.removeCompleteLines(matrix), tetris.clearMatrix())
+})
+
+test('Remove complete lines - 1 lines complete - with other pieces', (t) => {
+  let matrix = tetris.clearMatrix()
+  matrix[16] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
+  matrix[17] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
+  matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+  let matrixToTestAgainst = tetris.clearMatrix()
+  matrixToTestAgainst[18] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
+  matrixToTestAgainst[19] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
+
+  t.deepEqual(tetris.removeCompleteLines(matrix), matrixToTestAgainst)
+})
+
+test('Remove complete lines - 1 line complete - other than 1s - with other pieces', (t) => {
+  let matrix = tetris.clearMatrix()
+  matrix[17] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
+  matrix[18] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
+  matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 6]
+
+  let matrixToTestAgainst = tetris.clearMatrix()
+  matrixToTestAgainst[18] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
+  matrixToTestAgainst[19] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
+
+  t.deepEqual(tetris.removeCompleteLines(matrix), matrixToTestAgainst)
+})
+
+test('Remove complete lines - 2 lines complete - with other pieces', (t) => {
+  let matrix = tetris.clearMatrix()
+  matrix[16] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
+  matrix[17] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
+  matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+  let matrixToTestAgainst = tetris.clearMatrix()
+  matrixToTestAgainst[18] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
+  matrixToTestAgainst[19] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
+
+  t.deepEqual(tetris.removeCompleteLines(matrix), matrixToTestAgainst)
+})
+
+test('Remove complete lines - Simple - with pieces below', (t) => {
+  let matrix = [
+    [1, 0],
+    [1, 1],
+    [1, 0]
+  ]
+
+  let matrixToTestAgainst = [
+    [0, 0],
+    [1, 0],
+    [1, 0]
+  ]
+
+  t.deepEqual(tetris.removeCompleteLines(matrix), matrixToTestAgainst)
+})
+
+test('Remove complete lines - 1 lines complete - with pieces below', (t) => {
+  let matrix = tetris.clearMatrix()
+  matrix[15] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
+  matrix[16] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
+  matrix[17] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  matrix[19] = [0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1]
+
+  let matrixToTestAgainst = tetris.clearMatrix()
+  matrixToTestAgainst[17] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
+  matrixToTestAgainst[18] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
+  matrixToTestAgainst[19] = [0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1]
+
+  t.deepEqual(tetris.removeCompleteLines(matrix), matrixToTestAgainst)
 })
