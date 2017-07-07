@@ -28,6 +28,15 @@ test('Clear Matrix', (t) => {
   t.deepEqual(tetris.clearMatrix(), clearMatrixTest)
 })
 
+test('Clear Matrix without default size', (t) => {
+  t.deepEqual(tetris.clearMatrix(3, 4), [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0]
+  ])
+})
+
 test('Matrix with piece dont change original matrix', (t) => {
   let originalMatrix = tetris.clearMatrix()
   tetris.createPieceWithMatrix(originalMatrix)('I', 0, 0)
