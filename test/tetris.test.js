@@ -377,3 +377,143 @@ test('Remove complete lines - 1 lines complete - with pieces below', (t) => {
 
   t.deepEqual(tetris.removeCompleteLines(matrix), matrixToTestAgainst)
 })
+
+test('Gravity - Simple Test', (t) => {
+  let player = {
+    matrix: [
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [0, 0]
+    ],
+    piecePos: {x: 0, y: 0},
+    piece: 'I'
+  }
+
+  let playerToTestAgainst = {
+    matrix: [
+      [0, 0],
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [1, 0]
+    ],
+    piecePos: {x: 1, y: 0},
+    piece: 'I'
+  }
+
+  t.deepEqual(tetris.gravityWork(player), playerToTestAgainst)
+})
+
+test('Gravity - Other pieces on board', (t) => {
+  let player = {
+    matrix: [
+      [1, 0, 0, 2],
+      [1, 0, 0, 2],
+      [1, 0, 2, 2],
+      [1, 0, 0, 0],
+      [0, 0, 0, 0]
+    ],
+    piecePos: {x: 0, y: 0},
+    piece: 'I'
+  }
+
+  let playerToTestAgainst = {
+    matrix: [
+      [0, 0, 0, 2],
+      [1, 0, 0, 2],
+      [1, 0, 2, 2],
+      [1, 0, 0, 0],
+      [1, 0, 0, 0]
+    ],
+    piecePos: {x: 1, y: 0},
+    piece: 'I'
+  }
+
+  t.deepEqual(tetris.gravityWork(player), playerToTestAgainst)
+})
+
+test('Gravity - Other pieces near', (t) => {
+  let player = {
+    matrix: [
+      [1, 0, 2, 0],
+      [1, 0, 2, 0],
+      [1, 2, 2, 0],
+      [1, 0, 0, 0],
+      [0, 0, 0, 0]
+    ],
+    piecePos: {x: 0, y: 0},
+    piece: 'I'
+  }
+
+  let playerToTestAgainst = {
+    matrix: [
+      [0, 0, 2, 0],
+      [1, 0, 2, 0],
+      [1, 2, 2, 0],
+      [1, 0, 0, 0],
+      [1, 0, 0, 0]
+    ],
+    piecePos: {x: 1, y: 0},
+    piece: 'I'
+  }
+
+  t.deepEqual(tetris.gravityWork(player), playerToTestAgainst)
+})
+
+test('Gravity - Pieces with same color near', (t) => {
+  let player = {
+    matrix: [
+      [1, 1],
+      [1, 1],
+      [1, 1],
+      [1, 1],
+      [0, 0]
+    ],
+    piecePos: {x: 0, y: 0},
+    piece: 'I'
+  }
+
+  let playerToTestAgainst = {
+    matrix: [
+      [0, 1],
+      [1, 1],
+      [1, 1],
+      [1, 1],
+      [1, 0]
+    ],
+    piecePos: {x: 1, y: 0},
+    piece: 'I'
+  }
+
+  t.deepEqual(tetris.gravityWork(player), playerToTestAgainst)
+})
+
+test('Gravity - Pieces with same color near - move the other', (t) => {
+  let player = {
+    matrix: [
+      [1, 1],
+      [1, 1],
+      [1, 1],
+      [1, 1],
+      [0, 0]
+    ],
+    piecePos: {x: 0, y: 1},
+    piece: 'I'
+  }
+
+  let playerToTestAgainst = {
+    matrix: [
+      [1, 0],
+      [1, 1],
+      [1, 1],
+      [1, 1],
+      [0, 1]
+    ],
+    piecePos: {x: 1, y: 1},
+    piece: 'I'
+  }
+
+  t.deepEqual(tetris.gravityWork(player), playerToTestAgainst)
+})
