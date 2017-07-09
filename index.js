@@ -8,11 +8,17 @@ const maxWidth = 12
 const maxHeight = 20
 const colors = tetris.colors()
 
-let matrix = tetris.clearMatrix(maxWidth, maxHeight)
-let lastTime = 0
-let dropCounter = 0
-const dropInterval = 1000
-let playerPoints = 0
+let player = {
+  matrix: tetris.clearMatrix(maxWidth, maxHeight),
+  points: 0,
+  piecePos: {x: 0, y: 5},
+  piece: randomPiece()
+}
+const timeControl = {
+  lastTime: 0,
+  dropCounter: 0,
+  dropInterval: 1000
+}
 update()
 
 function draw (ctx, matrix) {
@@ -32,32 +38,35 @@ function drawPoints (ctx, playerPoints) {
 }
 
 function update (time = 0) {
-  dropCounter += time - lastTime
-  lastTime = time
-  if (dropCounter > dropInterval) {
-    dropCounter = 0
+  timeControl.dropCounter += time - timeControl.lastTime
+  timeControl.lastTime = time
+  if (timeControl.dropCounter > timeControl.dropInterval) {
+    timeControl.dropCounter = 0
     gameTick()
     ctx.clearRect(0, 0, maxWidth, maxHeight)
-    draw(ctx, matrix)
-    drawPoints(ctx, playerPoints)
+    draw(ctx, player.matrix)
+    drawPoints(ctx, player.points)
   }
 
   window.requestAnimationFrame(update)
 }
 
 function gameTick () {
-  if (tetris.checkLineComplete(matrix)) {
-    let roundPoints = tetris.calculatePointsForLineCompletion(matrix)
-    if (roundPoints === undefined) {
-      // throw error - cheating detected
-      return
+  if (tetris.colision(player)) {
+    player.piecePos = {x: 0, y: 5}
+    if (tetris.checkLineComplete(player.matrix)) {
+      let roundPoints = tetris.calculatePointsForLineCompletion(player.matrix)
+      if (roundPoints === undefined) {
+        // throw error - cheating detected
+        return
+      }
+      player.points += roundPoints
+      player.matrix = tetris.removeCompleteLines(player.matrix)
     }
-    playerPoints += roundPoints
-    matrix = tetris.removeCompleteLines(matrix)
-  } else if (tetris.checkFloatingPiece(matrix)) {
-    matrix = tetris.gravityWork(matrix)
+    player.piece = randomPiece()
+    player.matrix = tetris.createNewPiece(player.matrix, player.piece)
   } else {
-    matrix = tetris.createNewPiece(matrix, randomPiece())
+    player = tetris.gravityWork(player)
   }
 }
 
