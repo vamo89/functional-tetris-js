@@ -17,7 +17,7 @@ let player = {
 const timeControl = {
   lastTime: 0,
   dropCounter: 0,
-  dropInterval: 1000
+  dropInterval: 200
 }
 update()
 
@@ -52,8 +52,7 @@ function update (time = 0) {
 }
 
 function gameTick () {
-  if (tetris.colision(player)) {
-    player.piecePos = {x: 0, y: 5}
+  if (tetris.collision(player)) {
     if (tetris.checkLineComplete(player.matrix)) {
       let roundPoints = tetris.calculatePointsForLineCompletion(player.matrix)
       if (roundPoints === undefined) {
@@ -63,6 +62,7 @@ function gameTick () {
       player.points += roundPoints
       player.matrix = tetris.removeCompleteLines(player.matrix)
     }
+    player.piecePos = {x: 0, y: 5}
     player.piece = randomPiece()
     player.matrix = tetris.createNewPiece(player.matrix, player.piece)
   } else {

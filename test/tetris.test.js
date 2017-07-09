@@ -517,3 +517,35 @@ test('Gravity - Pieces with same color near - move the other', (t) => {
 
   t.deepEqual(tetris.gravityWork(player), playerToTestAgainst)
 })
+
+test('Collision - Simple Test - False', (t) => {
+  let player = {
+    matrix: [
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [0, 0]
+    ],
+    piecePos: {x: 0, y: 0},
+    piece: 'I'
+  }
+
+  t.false(tetris.collision(player))
+})
+
+test('Collision - Simple Test - True', (t) => {
+  let player = {
+    matrix: [
+      [0, 0],
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [1, 0]
+    ],
+    piecePos: {x: 1, y: 0},
+    piece: 'I'
+  }
+
+  t.true(tetris.collision(player))
+})
