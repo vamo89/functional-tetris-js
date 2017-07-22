@@ -66,7 +66,7 @@ function gameTick () {
     player.piece = randomPiece()
     player.matrix = tetris.createNewPiece(player.matrix, player.piece)
   } else {
-    player = tetris.gravityWork(player)
+    player = tetris.gravity(player)
   }
 }
 

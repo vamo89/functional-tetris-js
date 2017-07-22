@@ -403,7 +403,7 @@ test('Gravity - Simple Test', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.gravityWork(player), playerToTestAgainst)
+  t.deepEqual(tetris.gravity(player), playerToTestAgainst)
 })
 
 test('Gravity - Other pieces on board', (t) => {
@@ -431,7 +431,7 @@ test('Gravity - Other pieces on board', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.gravityWork(player), playerToTestAgainst)
+  t.deepEqual(tetris.gravity(player), playerToTestAgainst)
 })
 
 test('Gravity - Other pieces near', (t) => {
@@ -459,7 +459,7 @@ test('Gravity - Other pieces near', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.gravityWork(player), playerToTestAgainst)
+  t.deepEqual(tetris.gravity(player), playerToTestAgainst)
 })
 
 test('Gravity - Pieces with same color near', (t) => {
@@ -487,7 +487,7 @@ test('Gravity - Pieces with same color near', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.gravityWork(player), playerToTestAgainst)
+  t.deepEqual(tetris.gravity(player), playerToTestAgainst)
 })
 
 test('Gravity - Pieces with same color near - move the other', (t) => {
@@ -515,7 +515,7 @@ test('Gravity - Pieces with same color near - move the other', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.gravityWork(player), playerToTestAgainst)
+  t.deepEqual(tetris.gravity(player), playerToTestAgainst)
 })
 
 test('Collision - Simple Test - False', (t) => {
