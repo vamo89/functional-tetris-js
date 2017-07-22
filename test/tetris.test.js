@@ -581,3 +581,177 @@ test('Collision - With another piece - False', (t) => {
 
   t.false(tetris.collision(player, {x: 1, y: 0}))
 })
+
+test('Collision - Lateral - False', (t) => {
+  let player = {
+    matrix: [
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [0, 0]
+    ],
+    piecePos: {x: 0, y: 0},
+    piece: 'I'
+  }
+
+  t.false(tetris.collision(player, {x: 0, y: 1}))
+})
+
+test('Collision - Lateral - True', (t) => {
+  let player = {
+    matrix: [
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [0, 0]
+    ],
+    piecePos: {x: 0, y: 0},
+    piece: 'I'
+  }
+
+  t.true(tetris.collision(player, {x: 0, y: -1}))
+})
+
+test('Collision - Lateral with another piece - False', (t) => {
+  let player = {
+    matrix: [
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [0, 2]
+    ],
+    piecePos: {x: 0, y: 0},
+    piece: 'I'
+  }
+
+  t.false(tetris.collision(player, {x: 0, y: 1}))
+})
+
+test('Collision - Lateral with another piece - True', (t) => {
+  let player = {
+    matrix: [
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [1, 2],
+      [0, 0]
+    ],
+    piecePos: {x: 0, y: 0},
+    piece: 'I'
+  }
+
+  t.true(tetris.collision(player, {x: 0, y: 1}))
+})
+
+test('Move - Simple Test', (t) => {
+  let player = {
+    matrix: [
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [0, 0]
+    ],
+    piecePos: {x: 0, y: 0},
+    piece: 'I'
+  }
+
+  let playerToTestAgainst = {
+    matrix: [
+      [0, 1],
+      [0, 1],
+      [0, 1],
+      [0, 1],
+      [0, 0]
+    ],
+    piecePos: {x: 0, y: 1},
+    piece: 'I'
+  }
+
+  t.deepEqual(tetris.move(player, {x: 0, y: 1}), playerToTestAgainst)
+})
+
+test('Move - Other pieces on board', (t) => {
+  let player = {
+    matrix: [
+      [1, 0, 0, 2],
+      [1, 0, 0, 2],
+      [1, 0, 2, 2],
+      [1, 0, 0, 0],
+      [0, 0, 0, 0]
+    ],
+    piecePos: {x: 0, y: 0},
+    piece: 'I'
+  }
+
+  let playerToTestAgainst = {
+    matrix: [
+      [0, 1, 0, 2],
+      [0, 1, 0, 2],
+      [0, 1, 2, 2],
+      [0, 1, 0, 0],
+      [0, 0, 0, 0]
+    ],
+    piecePos: {x: 0, y: 1},
+    piece: 'I'
+  }
+
+  t.deepEqual(tetris.move(player, {x: 0, y: 1}), playerToTestAgainst)
+})
+
+test('Move - Other pieces near', (t) => {
+  let player = {
+    matrix: [
+      [1, 0, 2, 0],
+      [1, 0, 2, 0],
+      [1, 0, 2, 2],
+      [1, 0, 0, 0],
+      [0, 0, 0, 0]
+    ],
+    piecePos: {x: 0, y: 0},
+    piece: 'I'
+  }
+
+  let playerToTestAgainst = {
+    matrix: [
+      [0, 1, 2, 0],
+      [0, 1, 2, 0],
+      [0, 1, 2, 2],
+      [0, 1, 0, 0],
+      [0, 0, 0, 0]
+    ],
+    piecePos: {x: 0, y: 1},
+    piece: 'I'
+  }
+
+  t.deepEqual(tetris.move(player, {x: 0, y: 1}), playerToTestAgainst)
+})
+
+test('Move - Pieces with same color near', (t) => {
+  let player = {
+    matrix: [
+      [1, 0, 1],
+      [1, 0, 1],
+      [1, 0, 1],
+      [1, 0, 1]
+    ],
+    piecePos: {x: 0, y: 2},
+    piece: 'I'
+  }
+
+  let playerToTestAgainst = {
+    matrix: [
+      [1, 1, 0],
+      [1, 1, 0],
+      [1, 1, 0],
+      [1, 1, 0]
+    ],
+    piecePos: {x: 0, y: 1},
+    piece: 'I'
+  }
+
+  t.deepEqual(tetris.move(player, {x: 0, y: 1}), playerToTestAgainst)
+})

@@ -19,6 +19,7 @@ const timeControl = {
   dropCounter: 0,
   dropInterval: 200
 }
+playerControl()
 update()
 
 function draw (ctx, matrix) {
@@ -81,4 +82,23 @@ function gameTick () {
 
 function randomPiece () {
   return ['I', 'J', 'L', 'O', 'S', 'T', 'Z'][Math.floor(Math.random() * 7)]
+}
+
+function playerControl () {
+  document.addEventListener('keydown', function (event) {
+    let movePos = { x: player.piecePos.x, y: player.piecePos.y }
+    if (event.code === 'ArrowLeft') {
+      movePos.y--
+    } else if (event.code === 'ArrowRight') {
+      movePos.y++
+    } else if (event.code === 'ArrowDown') {
+      movePos.x++
+    } else if (event.code === 'ArrowUp') {
+      // TODO Rotate
+    }
+
+    if (!tetris.collision(player, movePos)) {
+      player = tetris.move(player, movePos)
+    }
+  })
 }
