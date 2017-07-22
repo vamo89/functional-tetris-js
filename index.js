@@ -56,7 +56,7 @@ function update (time = 0) {
 }
 
 function gameTick () {
-  if (tetris.collision(player, { x: player.piecePos.x + 1, y: player.piecePos.y })) {
+  if (tetris.collision(player, 'D')) {
     if (tetris.checkLineComplete(player.matrix)) {
       let roundPoints = tetris.calculatePointsForLineCompletion(player.matrix)
       if (roundPoints === undefined) {
@@ -68,13 +68,13 @@ function gameTick () {
     }
     player.piecePos = {x: 0, y: 5}
     player.piece = randomPiece()
-    if (tetris.collision(player, player.piecePos, false)) {
+    if (tetris.collision(player, '', false)) {
       // End Game
       return false
     }
     player.matrix = tetris.createNewPiece(player.matrix, player.piece)
   } else {
-    player = tetris.gravity(player)
+    player = tetris.move(player, 'D')
   }
 
   return true
@@ -86,19 +86,13 @@ function randomPiece () {
 
 function playerControl () {
   document.addEventListener('keydown', function (event) {
-    let movePos = { x: player.piecePos.x, y: player.piecePos.y }
-    if (event.code === 'ArrowLeft') {
-      movePos.y--
-    } else if (event.code === 'ArrowRight') {
-      movePos.y++
-    } else if (event.code === 'ArrowDown') {
-      movePos.x++
-    } else if (event.code === 'ArrowUp') {
-      // TODO Rotate
-    }
-
-    if (!tetris.collision(player, movePos)) {
-      player = tetris.move(player, movePos)
+    if (event.code === 'ArrowUp') {
+      player = tetris.rotate(player)
+    } else {
+      let moveDirection = {ArrowLeft: 'L', ArrowRight: 'R', ArrowDown: 'D'}[event.code]
+      if (!tetris.collision(player, moveDirection)) {
+        player = tetris.move(player, moveDirection)
+      }
     }
   })
 }

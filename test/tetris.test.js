@@ -403,7 +403,7 @@ test('Gravity - Simple Test', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.gravity(player), playerToTestAgainst)
+  t.deepEqual(tetris.move(player, 'D'), playerToTestAgainst)
 })
 
 test('Gravity - Other pieces on board', (t) => {
@@ -431,7 +431,7 @@ test('Gravity - Other pieces on board', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.gravity(player), playerToTestAgainst)
+  t.deepEqual(tetris.move(player, 'D'), playerToTestAgainst)
 })
 
 test('Gravity - Other pieces near', (t) => {
@@ -459,7 +459,7 @@ test('Gravity - Other pieces near', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.gravity(player), playerToTestAgainst)
+  t.deepEqual(tetris.move(player, 'D'), playerToTestAgainst)
 })
 
 test('Gravity - Pieces with same color near', (t) => {
@@ -487,7 +487,7 @@ test('Gravity - Pieces with same color near', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.gravity(player), playerToTestAgainst)
+  t.deepEqual(tetris.move(player, 'D'), playerToTestAgainst)
 })
 
 test('Gravity - Pieces with same color near - move the other', (t) => {
@@ -515,7 +515,7 @@ test('Gravity - Pieces with same color near - move the other', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.gravity(player), playerToTestAgainst)
+  t.deepEqual(tetris.move(player, 'D'), playerToTestAgainst)
 })
 
 test('Collision - Simple Test - False', (t) => {
@@ -531,7 +531,7 @@ test('Collision - Simple Test - False', (t) => {
     piece: 'I'
   }
 
-  t.false(tetris.collision(player, {x: 1, y: 0}))
+  t.false(tetris.collision(player, 'D'))
 })
 
 test('Collision - Simple Test - True', (t) => {
@@ -547,7 +547,7 @@ test('Collision - Simple Test - True', (t) => {
     piece: 'I'
   }
 
-  t.true(tetris.collision(player, {x: 2, y: 0}))
+  t.true(tetris.collision(player, 'D'))
 })
 
 test('Collision - With another piece - True', (t) => {
@@ -563,7 +563,7 @@ test('Collision - With another piece - True', (t) => {
     piece: 'I'
   }
 
-  t.true(tetris.collision(player, {x: 1, y: 0}))
+  t.true(tetris.collision(player, 'D'))
 })
 
 test('Collision - With another piece - False', (t) => {
@@ -579,7 +579,7 @@ test('Collision - With another piece - False', (t) => {
     piece: 'I'
   }
 
-  t.false(tetris.collision(player, {x: 1, y: 0}))
+  t.false(tetris.collision(player, 'D'))
 })
 
 test('Collision - Lateral - False', (t) => {
@@ -595,7 +595,7 @@ test('Collision - Lateral - False', (t) => {
     piece: 'I'
   }
 
-  t.false(tetris.collision(player, {x: 0, y: 1}))
+  t.false(tetris.collision(player, 'R'))
 })
 
 test('Collision - Lateral - True', (t) => {
@@ -611,7 +611,7 @@ test('Collision - Lateral - True', (t) => {
     piece: 'I'
   }
 
-  t.true(tetris.collision(player, {x: 0, y: -1}))
+  t.true(tetris.collision(player, 'L'))
 })
 
 test('Collision - Lateral with another piece - False', (t) => {
@@ -627,7 +627,7 @@ test('Collision - Lateral with another piece - False', (t) => {
     piece: 'I'
   }
 
-  t.false(tetris.collision(player, {x: 0, y: 1}))
+  t.false(tetris.collision(player, 'R'))
 })
 
 test('Collision - Lateral with another piece - True', (t) => {
@@ -643,7 +643,7 @@ test('Collision - Lateral with another piece - True', (t) => {
     piece: 'I'
   }
 
-  t.true(tetris.collision(player, {x: 0, y: 1}))
+  t.true(tetris.collision(player, 'R'))
 })
 
 test('Move - Simple Test', (t) => {
@@ -671,7 +671,7 @@ test('Move - Simple Test', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.move(player, {x: 0, y: 1}), playerToTestAgainst)
+  t.deepEqual(tetris.move(player, 'R'), playerToTestAgainst)
 })
 
 test('Move - Other pieces on board', (t) => {
@@ -699,7 +699,7 @@ test('Move - Other pieces on board', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.move(player, {x: 0, y: 1}), playerToTestAgainst)
+  t.deepEqual(tetris.move(player, 'R'), playerToTestAgainst)
 })
 
 test('Move - Other pieces near', (t) => {
@@ -727,7 +727,7 @@ test('Move - Other pieces near', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.move(player, {x: 0, y: 1}), playerToTestAgainst)
+  t.deepEqual(tetris.move(player, 'R'), playerToTestAgainst)
 })
 
 test('Move - Pieces with same color near', (t) => {
@@ -753,5 +753,5 @@ test('Move - Pieces with same color near', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.move(player, {x: 0, y: 1}), playerToTestAgainst)
+  t.deepEqual(tetris.move(player, 'L'), playerToTestAgainst)
 })
