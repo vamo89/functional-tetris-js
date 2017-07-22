@@ -531,7 +531,7 @@ test('Collision - Simple Test - False', (t) => {
     piece: 'I'
   }
 
-  t.false(tetris.collision(player))
+  t.false(tetris.collision(player, {x: 1, y: 0}))
 })
 
 test('Collision - Simple Test - True', (t) => {
@@ -547,5 +547,37 @@ test('Collision - Simple Test - True', (t) => {
     piece: 'I'
   }
 
-  t.true(tetris.collision(player))
+  t.true(tetris.collision(player, {x: 2, y: 0}))
+})
+
+test('Collision - With another piece - True', (t) => {
+  let player = {
+    matrix: [
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [2, 0]
+    ],
+    piecePos: {x: 0, y: 0},
+    piece: 'I'
+  }
+
+  t.true(tetris.collision(player, {x: 1, y: 0}))
+})
+
+test('Collision - With another piece - False', (t) => {
+  let player = {
+    matrix: [
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [1, 0],
+      [0, 2]
+    ],
+    piecePos: {x: 0, y: 0},
+    piece: 'I'
+  }
+
+  t.false(tetris.collision(player, {x: 1, y: 0}))
 })

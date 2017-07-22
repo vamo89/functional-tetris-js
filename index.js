@@ -38,36 +38,45 @@ function drawPoints (ctx, playerPoints) {
 }
 
 function update (time = 0) {
+  let gameContinue = true
   timeControl.dropCounter += time - timeControl.lastTime
   timeControl.lastTime = time
   if (timeControl.dropCounter > timeControl.dropInterval) {
     timeControl.dropCounter = 0
-    gameTick()
+    gameContinue = gameTick()
     ctx.clearRect(0, 0, maxWidth, maxHeight)
     draw(ctx, player.matrix)
     drawPoints(ctx, player.points)
   }
 
-  window.requestAnimationFrame(update)
+  if (gameContinue) {
+    window.requestAnimationFrame(update)
+  }
 }
 
 function gameTick () {
-  if (tetris.collision(player)) {
+  if (tetris.collision(player, { x: player.piecePos.x + 1, y: player.piecePos.y })) {
     if (tetris.checkLineComplete(player.matrix)) {
       let roundPoints = tetris.calculatePointsForLineCompletion(player.matrix)
       if (roundPoints === undefined) {
-        // throw error - cheating detected
-        return
+        // Cheating Detected
+        return false
       }
       player.points += roundPoints
       player.matrix = tetris.removeCompleteLines(player.matrix)
     }
     player.piecePos = {x: 0, y: 5}
     player.piece = randomPiece()
+    if (tetris.collision(player, player.piecePos, false)) {
+      // End Game
+      return false
+    }
     player.matrix = tetris.createNewPiece(player.matrix, player.piece)
   } else {
     player = tetris.gravity(player)
   }
+
+  return true
 }
 
 function randomPiece () {
