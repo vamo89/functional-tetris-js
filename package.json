@@ -6,7 +6,7 @@
   "scripts": {
     "test": "ava",
     "lint": "standard",
-    "dev": "chokidar '**/*.js' -i bundle.js -c 'standard && ava && browserify index.js > bundle.js'"
+    "dev": "chokidar '**/*.js' -i bundle.js -i node_modules -c 'standard && ava && browserify index.js > bundle.js'"
   },
   "keywords": [],
   "author": "",
