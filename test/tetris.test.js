@@ -1,4 +1,5 @@
 const test = require('ava')
+
 const tetris = require('../lib/tetris')
 
 const clearMatrixTest = [

@@ -1,102 +1,60 @@
-const tetris = require('./lib/tetris')
-
-const ctx = document.getElementById('tetris-canvas').getContext('2d')
-ctx.scale(20, 20)
-ctx.font = '1px times'
+const tetris = require('./lib/tetris.js')
 
 const maxWidth = 12
 const maxHeight = 20
-const colors = tetris.colors()
+const ctx = initCanvas('tetris-canvas')
+let state = tetris.initalState(maxWidth, maxHeight)
+bindUserEvents()
+loop()
 
-let player = {
-  matrix: tetris.clearMatrix(maxWidth, maxHeight),
-  points: 0,
-  piecePos: {x: 0, y: 5},
-  piece: randomPiece(),
-  pieceRotation: 0
+function initCanvas (canvasId) {
+  const ctx = document.getElementById(canvasId).getContext('2d')
+  ctx.scale(20, 20)
+  ctx.font = '1px times'
+  return ctx
 }
-const timeControl = {
-  lastTime: 0,
-  dropCounter: 0,
-  dropInterval: 200
-}
-playerControl()
-update()
-
-function draw (ctx, matrix) {
-  matrix.forEach((row, y) =>
-    row.forEach((value, x) => {
-      if (value) {
-        ctx.fillStyle = colors[value]
-        ctx.fillRect(x, y, 1, 1)
-      }
-    })
-  )
-}
-
-function drawPoints (ctx, playerPoints) {
-  ctx.fillStyle = 'black'
-  ctx.fillText('Points: ' + playerPoints, 0, maxHeight)
-}
-
-function update (time = 0) {
-  let gameContinue = true
-  timeControl.dropCounter += time - timeControl.lastTime
-  timeControl.lastTime = time
-  if (timeControl.dropCounter > timeControl.dropInterval) {
-    timeControl.dropCounter = 0
-    gameContinue = gameTick()
-    ctx.clearRect(0, 0, maxWidth, maxHeight)
-    draw(ctx, player.matrix)
-    drawPoints(ctx, player.points)
-  }
-
-  if (gameContinue) {
-    window.requestAnimationFrame(update)
-  }
-}
-
-function gameTick () {
-  if (tetris.collision(player, 'D')) {
-    if (tetris.checkLineComplete(player.matrix)) {
-      let roundPoints = tetris.calculatePointsForLineCompletion(player.matrix)
-      if (roundPoints === undefined) {
-        // Cheating Detected
-        console.log('roundPoints undefined')
-        return false
-      }
-      player.points += roundPoints
-      player.matrix = tetris.removeCompleteLines(player.matrix)
-    }
-    player.piecePos = {x: 0, y: 5}
-    player.piece = randomPiece()
-    player.pieceRotation = 0
-    if (tetris.collision(player, '', false)) {
-      // End Game
-      console.log('END GAME')
-      return false
-    }
-    player.matrix = tetris.createNewPiece(player.matrix, player.piece)
-  } else {
-    player = tetris.move(player, 'D')
-  }
-
-  return true
-}
-
-function randomPiece () {
-  return ['I', 'J', 'L', 'O', 'S', 'T', 'Z'][Math.floor(Math.random() * 7)]
-}
-
-function playerControl () {
+function bindUserEvents () {
   document.addEventListener('keydown', function (event) {
-    if (event.code === 'ArrowUp') {
-      player = tetris.rotate(player)
-    } else {
-      let moveDirection = {ArrowLeft: 'L', ArrowRight: 'R', ArrowDown: 'D'}[event.code]
-      if (!tetris.collision(player, moveDirection)) {
-        player = tetris.move(player, moveDirection)
-      }
-    }
+    state = tetris.userEvent(state, event.code)
+    redraw(ctx, state)
   })
+}
+function loop (time = 0) {
+  state = tetris.tick(state, time)
+  redraw(ctx, state)
+  if (state.continue) {
+    window.requestAnimationFrame(loop)
+  }
+}
+function redraw (ctx, state) {
+  ctx.clearRect(0, 0, maxWidth, maxHeight)
+  draw(ctx, state.player.matrix)
+  drawPoints(ctx, state.player.points)
+
+  function draw (ctx, matrix) {
+    matrix.forEach((row, y) =>
+      row.forEach((value, x) => {
+        if (value) {
+          ctx.fillStyle = colors()[value]
+          ctx.fillRect(x, y, 1, 1)
+        }
+      })
+    )
+  }
+  function drawPoints (ctx, playerPoints) {
+    ctx.fillStyle = 'black'
+    ctx.fillText('Points: ' + playerPoints, 0, maxHeight)
+  }
+}
+function colors () {
+  return [
+    '',
+    'cyan', // I
+    'blue', // J
+    'orange', // L
+    'yellow', // O
+    'lime', // S
+    'purple', // T
+    'red' // Z
+  ]
 }
