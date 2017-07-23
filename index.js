@@ -12,7 +12,8 @@ let player = {
   matrix: tetris.clearMatrix(maxWidth, maxHeight),
   points: 0,
   piecePos: {x: 0, y: 5},
-  piece: randomPiece()
+  piece: randomPiece(),
+  pieceRotation: 0
 }
 const timeControl = {
   lastTime: 0,
@@ -61,6 +62,7 @@ function gameTick () {
       let roundPoints = tetris.calculatePointsForLineCompletion(player.matrix)
       if (roundPoints === undefined) {
         // Cheating Detected
+        console.log('roundPoints undefined')
         return false
       }
       player.points += roundPoints
@@ -68,8 +70,10 @@ function gameTick () {
     }
     player.piecePos = {x: 0, y: 5}
     player.piece = randomPiece()
+    player.pieceRotation = 0
     if (tetris.collision(player, '', false)) {
       // End Game
+      console.log('END GAME')
       return false
     }
     player.matrix = tetris.createNewPiece(player.matrix, player.piece)
