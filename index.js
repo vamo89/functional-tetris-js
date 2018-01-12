@@ -2,8 +2,9 @@ const tetris = require('./lib/tetris.js')
 
 const maxWidth = 12
 const maxHeight = 20
+const randomSeed = +new Date()
 const ctx = initCanvas('tetris-canvas')
-let state = tetris.initalState(maxWidth, maxHeight)
+let state = tetris.initalState(maxWidth, maxHeight, randomSeed)
 bindUserEvents()
 loop()
 
