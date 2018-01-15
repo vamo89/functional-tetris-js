@@ -15,14 +15,15 @@ npm install
 Now, you are ready to run it:
 npm run dev
 
-You can open your index.html, and make changes in the files.
-When you make any change, it should reflect on the browser (after refresh).
-Also, it keeps running tests (easier to do TDD) and lint at every js change.
+When you make any change, it should reflect on the browser (hot-reload).
+Also, it keeps running lint at every js change.
+- Should run tests too (easier to do TDD)
 
 ## Know Bugs
 
-- At the first time running, you have to edit one js, so the bundle.js will be generated.
 - Objects get stuck at border when rotated
+- Possible to continue playing with one more piece after end - press down and side arrows
+- Weird interaction if rotate near placement (not sure how, need testing)
 
 ## Improvements
 
@@ -34,3 +35,6 @@ Also, it keeps running tests (easier to do TDD) and lint at every js change.
   - Highscore (local storage)
   - Responsive
   - Nice interface
+- Code related
+  - Run tests when edit files
+    - Change to mocha / mocha-loader
