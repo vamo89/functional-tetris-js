@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "ava",
+    "watch:test": "ava --watch",
     "lint": "standard",
     "dev": "webpack-dev-server --open --hot"
   },
