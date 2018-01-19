@@ -34,8 +34,6 @@ This is the easier way to do TDD, which I recommend doing for this project.
 - For user experience
   - Increase dropInterval
   - Show next piece
-  - Add start button
-  - Add restart button / show end game
   - Highscore (local storage)
   - Responsive
   - Nice interface

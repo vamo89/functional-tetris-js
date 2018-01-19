@@ -4,15 +4,35 @@ const tetris = require('./lib/tetris.js')
 
 const maxWidth = 12
 const maxHeight = 20
-const randomSeed = +new Date()
 const ctx = initCanvas('tetris-canvas')
 
 // Init
 
-let state = tetris.initalState(maxWidth, maxHeight, randomSeed)
-bindUserEvents()
-loop()
+let state
+init()
 
+function init (restart = false, state) {
+  drawButton(restart)
+  bindStartGame()
+
+  function drawButton (restart) {
+    ctx.fillStyle = 'green'
+    ctx.fillRect(1, 7, 10, 4)
+    ctx.fillStyle = 'black'
+    ctx.font = '3px times'
+    if (restart) {
+      ctx.fillText('Restart', 2, 10)
+    } else {
+      ctx.fillText('Start', 3, 10)
+    }
+  }
+}
+function bindStartGame () {
+  ctx.canvas.addEventListener('click', startGame)
+}
+function unbindStartGame () {
+  ctx.canvas.removeEventListener('click', startGame)
+}
 function initCanvas (canvasId) {
   const ctx = document.getElementById(canvasId).getContext('2d')
   ctx.scale(20, 20)
@@ -35,6 +55,13 @@ function unbindUserEvents () {
 
 // Game loop
 
+function startGame () {
+  const randomSeed = +new Date()
+  state = tetris.initalState(maxWidth, maxHeight, randomSeed)
+  unbindStartGame()
+  bindUserEvents()
+  loop()
+}
 function loop (time = 0) {
   state = tetris.tick(state, time)
   redraw(ctx, state)
@@ -42,6 +69,7 @@ function loop (time = 0) {
     window.requestAnimationFrame(loop)
   } else {
     unbindUserEvents()
+    init(true, state)
   }
 }
 function redraw (ctx, state) {
@@ -61,6 +89,7 @@ function redraw (ctx, state) {
   }
   function drawPoints (ctx, playerPoints) {
     ctx.fillStyle = 'black'
+    ctx.font = '1px times'
     ctx.fillText('Points: ' + playerPoints, 0, maxHeight)
   }
 }
