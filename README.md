@@ -2,6 +2,10 @@
 
 A small project to test some functional js
 
+## How to play
+
+https://vamo89.github.io/functional-tetris-js/
+
 ## How to run
 Install npm:
 sudo apt-get install npm -y
@@ -24,12 +28,12 @@ npm run watch:test
 This is the easier way to do TDD, which I recommend doing for this project.
 
 
-## Know Bugs
+### Know Bugs
 
 - Objects get stuck at border when rotated
 - Weird interaction if rotate near placement
 
-## Improvements
+### Improvements
 
 - For user experience
   - Increase dropInterval
