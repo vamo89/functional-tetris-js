@@ -1,9 +1,14 @@
 const tetris = require('./lib/tetris.js')
 
+// Constants
+
 const maxWidth = 12
 const maxHeight = 20
 const randomSeed = +new Date()
 const ctx = initCanvas('tetris-canvas')
+
+// Init
+
 let state = tetris.initalState(maxWidth, maxHeight, randomSeed)
 bindUserEvents()
 loop()
@@ -14,17 +19,29 @@ function initCanvas (canvasId) {
   ctx.font = '1px times'
   return ctx
 }
-function bindUserEvents () {
-  document.addEventListener('keydown', function (event) {
-    state = tetris.userEvent(state, event.code)
-    redraw(ctx, state)
-  })
+
+// User Interaction
+
+function doUserEventAndRedraw (event) {
+  state = tetris.userEvent(state, event.code)
+  redraw(ctx, state)
 }
+function bindUserEvents () {
+  document.addEventListener('keydown', doUserEventAndRedraw)
+}
+function unbindUserEvents () {
+  document.removeEventListener('keydown', doUserEventAndRedraw)
+}
+
+// Game loop
+
 function loop (time = 0) {
   state = tetris.tick(state, time)
   redraw(ctx, state)
   if (state.continue) {
     window.requestAnimationFrame(loop)
+  } else {
+    unbindUserEvents()
   }
 }
 function redraw (ctx, state) {
@@ -47,6 +64,9 @@ function redraw (ctx, state) {
     ctx.fillText('Points: ' + playerPoints, 0, maxHeight)
   }
 }
+
+// Aux
+
 function colors () {
   return [
     '',

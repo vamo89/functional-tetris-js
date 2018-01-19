@@ -27,7 +27,6 @@ This is the easier way to do TDD, which I recommend doing for this project.
 ## Know Bugs
 
 - Objects get stuck at border when rotated
-- Possible to continue playing with one more piece after end - press down and side arrows
 - Weird interaction if rotate near placement
 
 ## Improvements
