@@ -27,13 +27,6 @@ If you want to run tests, open in another terminal:
 
 This is the easier way to do TDD, which I recommend doing for this project.
 
-
-#### Known Bugs
-
-- Rotate is not checking collision
-  - Objects get stuck at border when rotated
-  - Weird interaction if rotate near placement
-
 #### Improvements
 
 - For user experience
@@ -46,4 +39,6 @@ This is the easier way to do TDD, which I recommend doing for this project.
     - On space
     - On focus lost
   - Start/restart on space
-  
+  - In rotation, when there is space, piece should move 1 or 2 tiles sideways to fit (check exactly what happens in original tetris)
+- Tests
+  - More tests for failed rotation

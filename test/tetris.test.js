@@ -1180,3 +1180,48 @@ test('Rotate - Z - 1', (t) => {
   }
   t.deepEqual(tetris.rotate(player), playerRotation1)
 })
+
+test('Fail Rotate - I - 1 - with other I', (t) => {
+  let player = {
+    matrix: [
+      [0, 1, 1, 0],
+      [0, 1, 1, 0],
+      [0, 1, 1, 0],
+      [0, 1, 1, 0]
+    ],
+    piecePos: {x: 0, y: 1},
+    piece: 'I',
+    pieceRotation: 0
+  }
+  t.deepEqual(tetris.rotate(player), player)
+})
+
+test('Fail Rotate - I - 1 - with other pieces', (t) => {
+  let player = {
+    matrix: [
+      [0, 1, 2, 0],
+      [0, 1, 3, 0],
+      [0, 1, 4, 0],
+      [0, 1, 5, 0]
+    ],
+    piecePos: {x: 0, y: 1},
+    piece: 'I',
+    pieceRotation: 0
+  }
+  t.deepEqual(tetris.rotate(player), player)
+})
+
+test('Fail Rotate - I - 1 - near border', (t) => {
+  let player = {
+    matrix: [
+      [0, 1],
+      [0, 1],
+      [0, 1],
+      [0, 1]
+    ],
+    piecePos: {x: 0, y: 1},
+    piece: 'I',
+    pieceRotation: 0
+  }
+  t.deepEqual(tetris.rotate(player), player)
+})
