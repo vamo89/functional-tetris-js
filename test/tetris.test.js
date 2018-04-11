@@ -26,11 +26,11 @@ const clearMatrixTest = [
 ]
 
 test('Clear Matrix', (t) => {
-  t.deepEqual(tetris.clearMatrix(), clearMatrixTest)
+  t.deepEqual(tetris._clearMatrix(), clearMatrixTest)
 })
 
 test('Clear Matrix without default size', (t) => {
-  t.deepEqual(tetris.clearMatrix(3, 4), [
+  t.deepEqual(tetris._clearMatrix(3, 4), [
     [0, 0, 0],
     [0, 0, 0],
     [0, 0, 0],
@@ -39,14 +39,14 @@ test('Clear Matrix without default size', (t) => {
 })
 
 test('Matrix with piece dont change original matrix', (t) => {
-  let originalMatrix = tetris.clearMatrix()
-  tetris.createNewPiece(originalMatrix, 'I', {x: 0, y: 0})
-  t.deepEqual(originalMatrix, tetris.clearMatrix())
+  let originalMatrix = tetris._clearMatrix()
+  tetris._createNewPiece(originalMatrix, 'I', {x: 0, y: 0})
+  t.deepEqual(originalMatrix, tetris._clearMatrix())
 })
 
 test('Matrix with I at 0,0', (t) => {
-  let matrix = tetris.createNewPiece(tetris.clearMatrix(), 'I', {x: 0, y: 0})
-  let matrixToTestAgainst = tetris.clearMatrix()
+  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'I', {x: 0, y: 0})
+  let matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[0][0] = 1
   matrixToTestAgainst[1][0] = 1
   matrixToTestAgainst[2][0] = 1
@@ -55,8 +55,8 @@ test('Matrix with I at 0,0', (t) => {
 })
 
 test('Matrix with J at 0,0', (t) => {
-  let matrix = tetris.createNewPiece(tetris.clearMatrix(), 'J', {x: 0, y: 0})
-  let matrixToTestAgainst = tetris.clearMatrix()
+  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'J', {x: 0, y: 0})
+  let matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[0][1] = 2
   matrixToTestAgainst[1][1] = 2
   matrixToTestAgainst[2][1] = 2
@@ -65,8 +65,8 @@ test('Matrix with J at 0,0', (t) => {
 })
 
 test('Matrix with L at 0,0', (t) => {
-  let matrix = tetris.createNewPiece(tetris.clearMatrix(), 'L', {x: 0, y: 0})
-  let matrixToTestAgainst = tetris.clearMatrix()
+  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'L', {x: 0, y: 0})
+  let matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[0][0] = 3
   matrixToTestAgainst[1][0] = 3
   matrixToTestAgainst[2][0] = 3
@@ -75,8 +75,8 @@ test('Matrix with L at 0,0', (t) => {
 })
 
 test('Matrix with O at 0,0', (t) => {
-  let matrix = tetris.createNewPiece(tetris.clearMatrix(), 'O', {x: 0, y: 0})
-  let matrixToTestAgainst = tetris.clearMatrix()
+  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'O', {x: 0, y: 0})
+  let matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[0][0] = 4
   matrixToTestAgainst[1][0] = 4
   matrixToTestAgainst[0][1] = 4
@@ -85,8 +85,8 @@ test('Matrix with O at 0,0', (t) => {
 })
 
 test('Matrix with S at 0,0', (t) => {
-  let matrix = tetris.createNewPiece(tetris.clearMatrix(), 'S', {x: 0, y: 0})
-  let matrixToTestAgainst = tetris.clearMatrix()
+  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'S', {x: 0, y: 0})
+  let matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[0][1] = 5
   matrixToTestAgainst[0][2] = 5
   matrixToTestAgainst[1][1] = 5
@@ -95,8 +95,8 @@ test('Matrix with S at 0,0', (t) => {
 })
 
 test('Matrix with T at 0,0', (t) => {
-  let matrix = tetris.createNewPiece(tetris.clearMatrix(), 'T', {x: 0, y: 0})
-  let matrixToTestAgainst = tetris.clearMatrix()
+  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'T', {x: 0, y: 0})
+  let matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[0][0] = 6
   matrixToTestAgainst[0][1] = 6
   matrixToTestAgainst[0][2] = 6
@@ -105,8 +105,8 @@ test('Matrix with T at 0,0', (t) => {
 })
 
 test('Matrix with Z at 0,0', (t) => {
-  let matrix = tetris.createNewPiece(tetris.clearMatrix(), 'Z', {x: 0, y: 0})
-  let matrixToTestAgainst = tetris.clearMatrix()
+  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'Z', {x: 0, y: 0})
+  let matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[0][0] = 7
   matrixToTestAgainst[0][1] = 7
   matrixToTestAgainst[1][1] = 7
@@ -115,8 +115,8 @@ test('Matrix with Z at 0,0', (t) => {
 })
 
 test('Matrix with piece outside 0,0', (t) => {
-  let matrix = tetris.createNewPiece(tetris.clearMatrix(), 'I', {x: 5, y: 6})
-  let matrixToTestAgainst = tetris.clearMatrix()
+  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'I', {x: 5, y: 6})
+  let matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[5][6] = 1
   matrixToTestAgainst[6][6] = 1
   matrixToTestAgainst[7][6] = 1
@@ -125,13 +125,13 @@ test('Matrix with piece outside 0,0', (t) => {
 })
 
 test('Matrix with unknow piece', (t) => {
-  let matrix = tetris.createNewPiece(tetris.clearMatrix(), 'M', {x: 0, y: 0})
-  t.deepEqual(tetris.clearMatrix(), matrix)
+  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'M', {x: 0, y: 0})
+  t.deepEqual(tetris._clearMatrix(), matrix)
 })
 
 test('Matrix with piece at origin', (t) => {
-  let matrix = tetris.createNewPiece(tetris.clearMatrix(), 'I')
-  let matrixToTestAgainst = tetris.clearMatrix()
+  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'I')
+  let matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[0][5] = 1
   matrixToTestAgainst[1][5] = 1
   matrixToTestAgainst[2][5] = 1
@@ -140,123 +140,123 @@ test('Matrix with piece at origin', (t) => {
 })
 
 test('Matrix with first line complete', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[0] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  t.true(tetris.checkLineComplete(matrix))
+  t.true(tetris._checkLineComplete(matrix))
 })
 
 test('Matrix with middle line complete', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[10] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  t.true(tetris.checkLineComplete(matrix))
+  t.true(tetris._checkLineComplete(matrix))
 })
 
 test('Matrix with last line complete', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  t.true(tetris.checkLineComplete(matrix))
+  t.true(tetris._checkLineComplete(matrix))
 })
 
 test('Matrix with line complete with other than 1s', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 6]
-  t.true(tetris.checkLineComplete(matrix))
+  t.true(tetris._checkLineComplete(matrix))
 })
 
 test('Matrix with line almost complete - first is 0', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[19] = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  t.false(tetris.checkLineComplete(matrix))
+  t.false(tetris._checkLineComplete(matrix))
 })
 
 test('Matrix with line almost complete - middle is 0', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[19] = [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1]
-  t.false(tetris.checkLineComplete(matrix))
+  t.false(tetris._checkLineComplete(matrix))
 })
 
 test('Matrix with line almost complete - last is 0', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
-  t.false(tetris.checkLineComplete(matrix))
+  t.false(tetris._checkLineComplete(matrix))
 })
 
 test('Matrix with line almost complete - other than 1s', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 0]
-  t.false(tetris.checkLineComplete(matrix))
+  t.false(tetris._checkLineComplete(matrix))
 })
 
 test('Matrix with column complete', (t) => {
-  let matrix = tetris.clearMatrix().map(row => row.map((value, index) => index === 0 ? 1 : 0))
-  t.false(tetris.checkLineComplete(matrix))
+  let matrix = tetris._clearMatrix().map(row => row.map((value, index) => index === 0 ? 1 : 0))
+  t.false(tetris._checkLineComplete(matrix))
 })
 
 test('Calculate points - no line complete', (t) => {
-  t.is(0, tetris.calculatePointsForLineCompletion(tetris.clearMatrix()))
+  t.is(0, tetris._calculatePointsForLineCompletion(tetris._clearMatrix()))
 })
 
 test('Calculate points - line almost complete', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
-  t.is(tetris.calculatePointsForLineCompletion(matrix), 0)
+  t.is(tetris._calculatePointsForLineCompletion(matrix), 0)
 })
 
 test('Calculate points - line almost complete - other than 1s', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 0]
-  t.is(tetris.calculatePointsForLineCompletion(matrix), 0)
+  t.is(tetris._calculatePointsForLineCompletion(matrix), 0)
 })
 
 test('Calculate points - column complete', (t) => {
-  let matrix = tetris.clearMatrix().map(row => row.map((value, index) => index === 0 ? 1 : 0))
-  t.is(tetris.calculatePointsForLineCompletion(matrix), 0)
+  let matrix = tetris._clearMatrix().map(row => row.map((value, index) => index === 0 ? 1 : 0))
+  t.is(tetris._calculatePointsForLineCompletion(matrix), 0)
 })
 
 test('Calculate points - 1 line complete', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  t.is(tetris.calculatePointsForLineCompletion(matrix), 40)
+  t.is(tetris._calculatePointsForLineCompletion(matrix), 40)
 })
 
 test('Calculate points - 1 line complete - other than 1s', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 6]
-  t.is(tetris.calculatePointsForLineCompletion(matrix), 40)
+  t.is(tetris._calculatePointsForLineCompletion(matrix), 40)
 })
 
 test('Calculate points - 2 lines complete', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  t.is(tetris.calculatePointsForLineCompletion(matrix), 100)
+  t.is(tetris._calculatePointsForLineCompletion(matrix), 100)
 })
 
 test('Calculate points - 3 lines complete', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[17] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  t.is(tetris.calculatePointsForLineCompletion(matrix), 300)
+  t.is(tetris._calculatePointsForLineCompletion(matrix), 300)
 })
 
 test('Calculate points - 4 lines complete', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[16] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[17] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  t.is(tetris.calculatePointsForLineCompletion(matrix), 1200)
+  t.is(tetris._calculatePointsForLineCompletion(matrix), 1200)
 })
 
 test('Calculate points - more than 4 lines complete', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[15] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[16] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[17] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  t.is(tetris.calculatePointsForLineCompletion(matrix), undefined)
+  t.is(tetris._calculatePointsForLineCompletion(matrix), undefined)
 })
 
 test('Remove complete lines - Simple - without other pieces', (t) => {
@@ -270,7 +270,7 @@ test('Remove complete lines - Simple - without other pieces', (t) => {
     [0, 0]
   ]
 
-  t.deepEqual(tetris.removeCompleteLines(matrix), matrixToTestAgainst)
+  t.deepEqual(tetris._removeCompleteLines(matrix), matrixToTestAgainst)
 })
 
 test('Remove complete lines - Simple - with other pieces', (t) => {
@@ -284,67 +284,67 @@ test('Remove complete lines - Simple - with other pieces', (t) => {
     [1, 0]
   ]
 
-  t.deepEqual(tetris.removeCompleteLines(matrix), matrixToTestAgainst)
+  t.deepEqual(tetris._removeCompleteLines(matrix), matrixToTestAgainst)
 })
 
 test('Remove complete lines - 1 line complete - without other pieces', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  t.deepEqual(tetris.removeCompleteLines(matrix), tetris.clearMatrix())
+  t.deepEqual(tetris._removeCompleteLines(matrix), tetris._clearMatrix())
 })
 
 test('Remove complete lines - 1 line complete - other than 1s - without other pieces', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 6]
-  t.deepEqual(tetris.removeCompleteLines(matrix), tetris.clearMatrix())
+  t.deepEqual(tetris._removeCompleteLines(matrix), tetris._clearMatrix())
 })
 
 test('Remove complete lines - 2 lines complete - without other pieces', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  t.deepEqual(tetris.removeCompleteLines(matrix), tetris.clearMatrix())
+  t.deepEqual(tetris._removeCompleteLines(matrix), tetris._clearMatrix())
 })
 
 test('Remove complete lines - 1 lines complete - with other pieces', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[16] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
   matrix[17] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
-  let matrixToTestAgainst = tetris.clearMatrix()
+  let matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[18] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
   matrixToTestAgainst[19] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
 
-  t.deepEqual(tetris.removeCompleteLines(matrix), matrixToTestAgainst)
+  t.deepEqual(tetris._removeCompleteLines(matrix), matrixToTestAgainst)
 })
 
 test('Remove complete lines - 1 line complete - other than 1s - with other pieces', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[17] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
   matrix[18] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
   matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 6]
 
-  let matrixToTestAgainst = tetris.clearMatrix()
+  let matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[18] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
   matrixToTestAgainst[19] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
 
-  t.deepEqual(tetris.removeCompleteLines(matrix), matrixToTestAgainst)
+  t.deepEqual(tetris._removeCompleteLines(matrix), matrixToTestAgainst)
 })
 
 test('Remove complete lines - 2 lines complete - with other pieces', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[16] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
   matrix[17] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
-  let matrixToTestAgainst = tetris.clearMatrix()
+  let matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[18] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
   matrixToTestAgainst[19] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
 
-  t.deepEqual(tetris.removeCompleteLines(matrix), matrixToTestAgainst)
+  t.deepEqual(tetris._removeCompleteLines(matrix), matrixToTestAgainst)
 })
 
 test('Remove complete lines - Simple - with pieces below', (t) => {
@@ -360,23 +360,23 @@ test('Remove complete lines - Simple - with pieces below', (t) => {
     [1, 0]
   ]
 
-  t.deepEqual(tetris.removeCompleteLines(matrix), matrixToTestAgainst)
+  t.deepEqual(tetris._removeCompleteLines(matrix), matrixToTestAgainst)
 })
 
 test('Remove complete lines - 1 lines complete - with pieces below', (t) => {
-  let matrix = tetris.clearMatrix()
+  let matrix = tetris._clearMatrix()
   matrix[15] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
   matrix[16] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
   matrix[17] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1]
 
-  let matrixToTestAgainst = tetris.clearMatrix()
+  let matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[17] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
   matrixToTestAgainst[18] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
   matrixToTestAgainst[19] = [0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1]
 
-  t.deepEqual(tetris.removeCompleteLines(matrix), matrixToTestAgainst)
+  t.deepEqual(tetris._removeCompleteLines(matrix), matrixToTestAgainst)
 })
 
 test('Gravity - Simple Test', (t) => {
@@ -404,7 +404,7 @@ test('Gravity - Simple Test', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.move(player, 'D'), playerToTestAgainst)
+  t.deepEqual(tetris._move(player, 'D'), playerToTestAgainst)
 })
 
 test('Gravity - Other pieces on board', (t) => {
@@ -432,7 +432,7 @@ test('Gravity - Other pieces on board', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.move(player, 'D'), playerToTestAgainst)
+  t.deepEqual(tetris._move(player, 'D'), playerToTestAgainst)
 })
 
 test('Gravity - Other pieces near', (t) => {
@@ -460,7 +460,7 @@ test('Gravity - Other pieces near', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.move(player, 'D'), playerToTestAgainst)
+  t.deepEqual(tetris._move(player, 'D'), playerToTestAgainst)
 })
 
 test('Gravity - Pieces with same color near', (t) => {
@@ -488,7 +488,7 @@ test('Gravity - Pieces with same color near', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.move(player, 'D'), playerToTestAgainst)
+  t.deepEqual(tetris._move(player, 'D'), playerToTestAgainst)
 })
 
 test('Gravity - Pieces with same color near - move the other', (t) => {
@@ -516,7 +516,7 @@ test('Gravity - Pieces with same color near - move the other', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.move(player, 'D'), playerToTestAgainst)
+  t.deepEqual(tetris._move(player, 'D'), playerToTestAgainst)
 })
 
 test('Collision - Simple Test - False', (t) => {
@@ -532,7 +532,7 @@ test('Collision - Simple Test - False', (t) => {
     piece: 'I'
   }
 
-  t.false(tetris.collision(player, 'D'))
+  t.false(tetris._collision(player, 'D'))
 })
 
 test('Collision - Simple Test - True', (t) => {
@@ -548,7 +548,7 @@ test('Collision - Simple Test - True', (t) => {
     piece: 'I'
   }
 
-  t.true(tetris.collision(player, 'D'))
+  t.true(tetris._collision(player, 'D'))
 })
 
 test('Collision - With another piece - True', (t) => {
@@ -564,7 +564,7 @@ test('Collision - With another piece - True', (t) => {
     piece: 'I'
   }
 
-  t.true(tetris.collision(player, 'D'))
+  t.true(tetris._collision(player, 'D'))
 })
 
 test('Collision - With another piece - False', (t) => {
@@ -580,7 +580,7 @@ test('Collision - With another piece - False', (t) => {
     piece: 'I'
   }
 
-  t.false(tetris.collision(player, 'D'))
+  t.false(tetris._collision(player, 'D'))
 })
 
 test('Collision - Lateral - False', (t) => {
@@ -596,7 +596,7 @@ test('Collision - Lateral - False', (t) => {
     piece: 'I'
   }
 
-  t.false(tetris.collision(player, 'R'))
+  t.false(tetris._collision(player, 'R'))
 })
 
 test('Collision - Lateral - True', (t) => {
@@ -612,7 +612,7 @@ test('Collision - Lateral - True', (t) => {
     piece: 'I'
   }
 
-  t.true(tetris.collision(player, 'L'))
+  t.true(tetris._collision(player, 'L'))
 })
 
 test('Collision - Lateral with another piece - False', (t) => {
@@ -628,7 +628,7 @@ test('Collision - Lateral with another piece - False', (t) => {
     piece: 'I'
   }
 
-  t.false(tetris.collision(player, 'R'))
+  t.false(tetris._collision(player, 'R'))
 })
 
 test('Collision - Lateral with another piece - True', (t) => {
@@ -644,7 +644,7 @@ test('Collision - Lateral with another piece - True', (t) => {
     piece: 'I'
   }
 
-  t.true(tetris.collision(player, 'R'))
+  t.true(tetris._collision(player, 'R'))
 })
 
 test('Move - Simple Test', (t) => {
@@ -672,7 +672,7 @@ test('Move - Simple Test', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.move(player, 'R'), playerToTestAgainst)
+  t.deepEqual(tetris._move(player, 'R'), playerToTestAgainst)
 })
 
 test('Move - Other pieces on board', (t) => {
@@ -700,7 +700,7 @@ test('Move - Other pieces on board', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.move(player, 'R'), playerToTestAgainst)
+  t.deepEqual(tetris._move(player, 'R'), playerToTestAgainst)
 })
 
 test('Move - Other pieces near', (t) => {
@@ -728,7 +728,7 @@ test('Move - Other pieces near', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.move(player, 'R'), playerToTestAgainst)
+  t.deepEqual(tetris._move(player, 'R'), playerToTestAgainst)
 })
 
 test('Move - Pieces with same color near', (t) => {
@@ -754,7 +754,7 @@ test('Move - Pieces with same color near', (t) => {
     piece: 'I'
   }
 
-  t.deepEqual(tetris.move(player, 'L'), playerToTestAgainst)
+  t.deepEqual(tetris._move(player, 'L'), playerToTestAgainst)
 })
 
 test('Rotate - I - 1', (t) => {
@@ -781,7 +781,7 @@ test('Rotate - I - 1', (t) => {
     piece: 'I',
     pieceRotation: 1
   }
-  t.deepEqual(tetris.rotate(player), playerRotation1)
+  t.deepEqual(tetris._rotate(player), playerRotation1)
 })
 
 test('Rotate - I - 2', (t) => {
@@ -808,7 +808,7 @@ test('Rotate - I - 2', (t) => {
     piece: 'I',
     pieceRotation: 2
   }
-  t.deepEqual(tetris.rotate(tetris.rotate(player)), playerRotation2)
+  t.deepEqual(tetris._rotate(tetris._rotate(player)), playerRotation2)
 })
 
 test('Rotate - I - 3', (t) => {
@@ -835,7 +835,7 @@ test('Rotate - I - 3', (t) => {
     piece: 'I',
     pieceRotation: 3
   }
-  t.deepEqual(tetris.rotate(tetris.rotate(tetris.rotate(player))), playerRotation3)
+  t.deepEqual(tetris._rotate(tetris._rotate(tetris._rotate(player))), playerRotation3)
 })
 
 test('Rotate - I - 4', (t) => {
@@ -862,7 +862,7 @@ test('Rotate - I - 4', (t) => {
     piece: 'I',
     pieceRotation: 0
   }
-  t.deepEqual(tetris.rotate(tetris.rotate(tetris.rotate(tetris.rotate(player)))), playerRotation4)
+  t.deepEqual(tetris._rotate(tetris._rotate(tetris._rotate(tetris._rotate(player)))), playerRotation4)
 })
 
 test('Rotate - J - 1', (t) => {
@@ -889,7 +889,7 @@ test('Rotate - J - 1', (t) => {
     piece: 'J',
     pieceRotation: 1
   }
-  t.deepEqual(tetris.rotate(player), playerRotation1)
+  t.deepEqual(tetris._rotate(player), playerRotation1)
 })
 
 test('Rotate - J - 2', (t) => {
@@ -916,7 +916,7 @@ test('Rotate - J - 2', (t) => {
     piece: 'J',
     pieceRotation: 2
   }
-  t.deepEqual(tetris.rotate(tetris.rotate(player)), playerRotation1)
+  t.deepEqual(tetris._rotate(tetris._rotate(player)), playerRotation1)
 })
 
 test('Rotate - J - 3', (t) => {
@@ -943,7 +943,7 @@ test('Rotate - J - 3', (t) => {
     piece: 'J',
     pieceRotation: 3
   }
-  t.deepEqual(tetris.rotate(tetris.rotate(tetris.rotate(player))), playerRotation1)
+  t.deepEqual(tetris._rotate(tetris._rotate(tetris._rotate(player))), playerRotation1)
 })
 
 test('Rotate - L - 1', (t) => {
@@ -970,7 +970,7 @@ test('Rotate - L - 1', (t) => {
     piece: 'L',
     pieceRotation: 1
   }
-  t.deepEqual(tetris.rotate(player), playerRotation1)
+  t.deepEqual(tetris._rotate(player), playerRotation1)
 })
 
 test('Rotate - L - 2', (t) => {
@@ -997,7 +997,7 @@ test('Rotate - L - 2', (t) => {
     piece: 'L',
     pieceRotation: 2
   }
-  t.deepEqual(tetris.rotate(tetris.rotate(player)), playerRotation1)
+  t.deepEqual(tetris._rotate(tetris._rotate(player)), playerRotation1)
 })
 
 test('Rotate - L - 3', (t) => {
@@ -1024,7 +1024,7 @@ test('Rotate - L - 3', (t) => {
     piece: 'L',
     pieceRotation: 3
   }
-  t.deepEqual(tetris.rotate(tetris.rotate(tetris.rotate(player))), playerRotation1)
+  t.deepEqual(tetris._rotate(tetris._rotate(tetris._rotate(player))), playerRotation1)
 })
 
 test('Rotate - O', (t) => {
@@ -1049,7 +1049,7 @@ test('Rotate - O', (t) => {
     piece: 'O',
     pieceRotation: 1
   }
-  t.deepEqual(tetris.rotate(player), playerRotation1)
+  t.deepEqual(tetris._rotate(player), playerRotation1)
 })
 
 test('Rotate - S - 1', (t) => {
@@ -1076,7 +1076,7 @@ test('Rotate - S - 1', (t) => {
     piece: 'S',
     pieceRotation: 1
   }
-  t.deepEqual(tetris.rotate(player), playerRotation1)
+  t.deepEqual(tetris._rotate(player), playerRotation1)
 })
 
 test('Rotate - T - 1', (t) => {
@@ -1101,7 +1101,7 @@ test('Rotate - T - 1', (t) => {
     piece: 'T',
     pieceRotation: 1
   }
-  t.deepEqual(tetris.rotate(player), playerRotation1)
+  t.deepEqual(tetris._rotate(player), playerRotation1)
 })
 
 test('Rotate - T - 2', (t) => {
@@ -1126,7 +1126,7 @@ test('Rotate - T - 2', (t) => {
     piece: 'T',
     pieceRotation: 2
   }
-  t.deepEqual(tetris.rotate(tetris.rotate(player)), playerRotation1)
+  t.deepEqual(tetris._rotate(tetris._rotate(player)), playerRotation1)
 })
 
 test('Rotate - T - 3', (t) => {
@@ -1151,7 +1151,7 @@ test('Rotate - T - 3', (t) => {
     piece: 'T',
     pieceRotation: 3
   }
-  t.deepEqual(tetris.rotate(tetris.rotate(tetris.rotate(player))), playerRotation1)
+  t.deepEqual(tetris._rotate(tetris._rotate(tetris._rotate(player))), playerRotation1)
 })
 
 test('Rotate - Z - 1', (t) => {
@@ -1178,7 +1178,7 @@ test('Rotate - Z - 1', (t) => {
     piece: 'Z',
     pieceRotation: 1
   }
-  t.deepEqual(tetris.rotate(player), playerRotation1)
+  t.deepEqual(tetris._rotate(player), playerRotation1)
 })
 
 test('Fail Rotate - I - 1 - with other I', (t) => {
@@ -1193,7 +1193,7 @@ test('Fail Rotate - I - 1 - with other I', (t) => {
     piece: 'I',
     pieceRotation: 0
   }
-  t.deepEqual(tetris.rotate(player), player)
+  t.deepEqual(tetris._rotate(player), player)
 })
 
 test('Fail Rotate - I - 1 - with other pieces', (t) => {
@@ -1208,7 +1208,7 @@ test('Fail Rotate - I - 1 - with other pieces', (t) => {
     piece: 'I',
     pieceRotation: 0
   }
-  t.deepEqual(tetris.rotate(player), player)
+  t.deepEqual(tetris._rotate(player), player)
 })
 
 test('Fail Rotate - I - 1 - near border', (t) => {
@@ -1223,5 +1223,5 @@ test('Fail Rotate - I - 1 - near border', (t) => {
     piece: 'I',
     pieceRotation: 0
   }
-  t.deepEqual(tetris.rotate(player), player)
+  t.deepEqual(tetris._rotate(player), player)
 })
