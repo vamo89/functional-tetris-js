@@ -42,3 +42,5 @@ This is the easier way to do TDD, which I recommend doing for this project.
   - In rotation, when there is space, piece should move 1 or 2 tiles sideways to fit (check exactly what happens in original tetris)
 - Tests
   - More tests for failed rotation
+- Code
+  - Change names of private methods on functional-tetris-js/lib/tetris.js to start with _
