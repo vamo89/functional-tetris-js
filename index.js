@@ -6,6 +6,10 @@ const maxWidth = 12
 const maxHeight = 20
 const ctx = initCanvas('tetris-canvas')
 
+const nextPieceMaxWidth = 3
+const nextPieceMaxHeight = 4
+const nextPieceCtx = initCanvas('tetris-nextPiece-canvas')
+
 // Init
 
 let state
@@ -77,6 +81,9 @@ function redraw (ctx, state) {
   draw(ctx, state.player.matrix)
   drawPoints(ctx, state.player.points)
 
+  nextPieceCtx.clearRect(0, 0, nextPieceMaxWidth, nextPieceMaxHeight)
+  drawNextPiece(nextPieceCtx, state.player.nextPiece)
+
   function draw (ctx, matrix) {
     matrix.forEach((row, y) =>
       row.forEach((value, x) => {
@@ -86,6 +93,11 @@ function redraw (ctx, state) {
         }
       })
     )
+  }
+  function drawNextPiece (ctx, piece) {
+    ctx.fillStyle = 'black'
+    ctx.font = '3px times'
+    ctx.fillText(piece, 1, 3)
   }
   function drawPoints (ctx, playerPoints) {
     ctx.fillStyle = 'black'

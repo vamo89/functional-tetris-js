@@ -31,7 +31,7 @@ This is the easier way to do TDD, which I recommend doing for this project.
 
 - For user experience
   - Increase dropInterval
-  - Show next piece
+  - Show next piece with graphics instead of text
   - Highscore (local storage)
   - Responsive
   - Nice interface
