@@ -5,6 +5,7 @@ const tetris = require('./lib/tetris.js')
 const maxWidth = 12
 const maxHeight = 20
 const ctx = initCanvas('tetris-canvas')
+const pointsElem = document.getElementById('points')
 
 const nextPieceMaxWidth = 3
 const nextPieceMaxHeight = 4
@@ -79,7 +80,7 @@ function loop (time = 0) {
 function redraw (ctx, state) {
   ctx.clearRect(0, 0, maxWidth, maxHeight)
   draw(ctx, state.player.matrix)
-  drawPoints(ctx, state.player.points)
+  drawPoints(state.player.points)
 
   nextPieceCtx.clearRect(0, 0, nextPieceMaxWidth, nextPieceMaxHeight)
   draw(nextPieceCtx, state.player.nextPiece.matrix)
@@ -94,10 +95,8 @@ function redraw (ctx, state) {
       })
     )
   }
-  function drawPoints (ctx, playerPoints) {
-    ctx.fillStyle = 'black'
-    ctx.font = '1px times'
-    ctx.fillText('Points: ' + playerPoints, 0, maxHeight)
+  function drawPoints (playerPoints) {
+    pointsElem.innerText = 'Points: ' + playerPoints
   }
 }
 
