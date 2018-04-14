@@ -30,8 +30,7 @@ This is the easier way to do TDD, which I recommend doing for this project.
 #### Improvements
 
 - For user experience
-  - Increase dropInterval
-  - Show next piece with graphics instead of text
+  - Increase dropInterval with time playing (make more difficult)
   - Highscore (local storage)
   - Responsive
   - Nice interface
@@ -40,5 +39,7 @@ This is the easier way to do TDD, which I recommend doing for this project.
     - On focus lost
   - Start/restart on space
   - In rotation, when there is space, piece should move 1 or 2 tiles sideways to fit (check exactly what happens in original tetris)
+  - Make 'next piece' canvas dynamic - fit the piece
+  - Way to show N next pieces (configurable)
 - Tests
   - More tests for failed rotation

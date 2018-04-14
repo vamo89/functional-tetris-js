@@ -61,7 +61,7 @@ function unbindUserEvents () {
 
 function startGame () {
   const randomSeed = +new Date()
-  state = tetris.initalState(maxWidth, maxHeight, randomSeed)
+  state = tetris.initalState(maxWidth, maxHeight, randomSeed, { nextPieceMaxWidth, nextPieceMaxHeight })
   unbindStartGame()
   bindUserEvents()
   loop()
@@ -82,7 +82,7 @@ function redraw (ctx, state) {
   drawPoints(ctx, state.player.points)
 
   nextPieceCtx.clearRect(0, 0, nextPieceMaxWidth, nextPieceMaxHeight)
-  drawNextPiece(nextPieceCtx, state.player.nextPiece)
+  draw(nextPieceCtx, state.player.nextPiece.matrix)
 
   function draw (ctx, matrix) {
     matrix.forEach((row, y) =>
@@ -93,11 +93,6 @@ function redraw (ctx, state) {
         }
       })
     )
-  }
-  function drawNextPiece (ctx, piece) {
-    ctx.fillStyle = 'black'
-    ctx.font = '3px times'
-    ctx.fillText(piece, 1, 3)
   }
   function drawPoints (ctx, playerPoints) {
     ctx.fillStyle = 'black'
