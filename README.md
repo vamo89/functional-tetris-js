@@ -30,7 +30,6 @@ This is the easier way to do TDD, which I recommend doing for this project.
 #### Improvements
 
 - For user experience
-  - Increase dropInterval with time playing (make more difficult)
   - Highscore (local storage)
   - Responsive
   - Nice interface

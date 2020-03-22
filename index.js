@@ -6,6 +6,7 @@ const maxWidth = 12
 const maxHeight = 20
 const ctx = initCanvas('tetris-canvas')
 const pointsElem = document.getElementById('points')
+const levelElem = document.getElementById('level')
 
 const nextPieceMaxWidth = 3
 const nextPieceMaxHeight = 4
@@ -88,6 +89,7 @@ function redraw (ctx, state) {
   ctx.clearRect(0, 0, maxWidth, maxHeight)
   draw(ctx, state.player.matrix)
   drawPoints(state.player.points)
+  drawLevel(state.player.level)
 
   nextPieceCtx.clearRect(0, 0, nextPieceMaxWidth, nextPieceMaxHeight)
   draw(nextPieceCtx, state.player.nextPiece.matrix)
@@ -105,6 +107,10 @@ function redraw (ctx, state) {
 
   function drawPoints (playerPoints) {
     pointsElem.innerText = 'Points: ' + playerPoints
+  }
+
+  function drawLevel (playerLevel) {
+    levelElem.innerText = 'Level: ' + playerLevel
   }
 }
 

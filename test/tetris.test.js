@@ -259,6 +259,66 @@ test('Calculate points - more than 4 lines complete', (t) => {
   t.is(tetris._calculatePointsForLineCompletion(matrix), undefined)
 })
 
+test('Calculate level - initial', (t) => {
+  t.is(tetris._calculateLevel(0), 0)
+})
+
+test('Calculate level - before first change', (t) => {
+  t.is(tetris._calculateLevel(199), 0)
+})
+
+test('Calculate level - 1', (t) => {
+  t.is(tetris._calculateLevel(200), 1)
+})
+
+test('Calculate level - 2', (t) => {
+  t.is(tetris._calculateLevel(400), 2)
+})
+
+test('Calculate level - before 6th change', (t) => {
+  t.is(tetris._calculateLevel(1199), 5)
+})
+
+test('Calculate level - 6', (t) => {
+  t.is(tetris._calculateLevel(1200), 6)
+})
+
+test('Calculate drop interval - initial', (t) => {
+  t.is(tetris._calculateDropInterval(0), 200)
+})
+
+test('Calculate drop interval - first change', (t) => {
+  t.is(tetris._calculateDropInterval(1), 180)
+})
+
+test('Calculate drop interval - second change', (t) => {
+  t.is(tetris._calculateDropInterval(2), 160)
+})
+
+test('Calculate drop interval - before 6th change', (t) => {
+  t.is(tetris._calculateDropInterval(5), 100)
+})
+
+test('Calculate drop interval - 6th change', (t) => {
+  t.is(tetris._calculateDropInterval(6), 90)
+})
+
+test('Calculate drop interval - 7th change', (t) => {
+  t.is(tetris._calculateDropInterval(7), 80)
+})
+
+test('Calculate drop interval - before last change', (t) => {
+  t.is(tetris._calculateDropInterval(9), 60)
+})
+
+test('Calculate drop interval - last change', (t) => {
+  t.is(tetris._calculateDropInterval(10), 50)
+})
+
+test('Calculate drop interval - way after last change', (t) => {
+  t.is(tetris._calculateDropInterval(20), 50)
+})
+
 test('Remove complete lines - Simple - without other pieces', (t) => {
   const matrix = [
     [0, 0],
