@@ -3,26 +3,26 @@ const test = require('ava')
 const tetris = require('../lib/tetris')
 
 const clearMatrixTest = [
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ]
 
 test('Clear Matrix', (t) => {
@@ -39,14 +39,14 @@ test('Clear Matrix without default size', (t) => {
 })
 
 test('Matrix with piece dont change original matrix', (t) => {
-  let originalMatrix = tetris._clearMatrix()
-  tetris._createNewPiece(originalMatrix, 'I', {x: 0, y: 0})
+  const originalMatrix = tetris._clearMatrix()
+  tetris._createNewPiece(originalMatrix, 'I', { x: 0, y: 0 })
   t.deepEqual(originalMatrix, tetris._clearMatrix())
 })
 
 test('Matrix with I at 0,0', (t) => {
-  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'I', {x: 0, y: 0})
-  let matrixToTestAgainst = tetris._clearMatrix()
+  const matrix = tetris._createNewPiece(tetris._clearMatrix(), 'I', { x: 0, y: 0 })
+  const matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[0][0] = 1
   matrixToTestAgainst[1][0] = 1
   matrixToTestAgainst[2][0] = 1
@@ -55,8 +55,8 @@ test('Matrix with I at 0,0', (t) => {
 })
 
 test('Matrix with J at 0,0', (t) => {
-  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'J', {x: 0, y: 0})
-  let matrixToTestAgainst = tetris._clearMatrix()
+  const matrix = tetris._createNewPiece(tetris._clearMatrix(), 'J', { x: 0, y: 0 })
+  const matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[0][1] = 2
   matrixToTestAgainst[1][1] = 2
   matrixToTestAgainst[2][1] = 2
@@ -65,8 +65,8 @@ test('Matrix with J at 0,0', (t) => {
 })
 
 test('Matrix with L at 0,0', (t) => {
-  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'L', {x: 0, y: 0})
-  let matrixToTestAgainst = tetris._clearMatrix()
+  const matrix = tetris._createNewPiece(tetris._clearMatrix(), 'L', { x: 0, y: 0 })
+  const matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[0][0] = 3
   matrixToTestAgainst[1][0] = 3
   matrixToTestAgainst[2][0] = 3
@@ -75,8 +75,8 @@ test('Matrix with L at 0,0', (t) => {
 })
 
 test('Matrix with O at 0,0', (t) => {
-  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'O', {x: 0, y: 0})
-  let matrixToTestAgainst = tetris._clearMatrix()
+  const matrix = tetris._createNewPiece(tetris._clearMatrix(), 'O', { x: 0, y: 0 })
+  const matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[0][0] = 4
   matrixToTestAgainst[1][0] = 4
   matrixToTestAgainst[0][1] = 4
@@ -85,8 +85,8 @@ test('Matrix with O at 0,0', (t) => {
 })
 
 test('Matrix with S at 0,0', (t) => {
-  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'S', {x: 0, y: 0})
-  let matrixToTestAgainst = tetris._clearMatrix()
+  const matrix = tetris._createNewPiece(tetris._clearMatrix(), 'S', { x: 0, y: 0 })
+  const matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[0][1] = 5
   matrixToTestAgainst[0][2] = 5
   matrixToTestAgainst[1][1] = 5
@@ -95,8 +95,8 @@ test('Matrix with S at 0,0', (t) => {
 })
 
 test('Matrix with T at 0,0', (t) => {
-  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'T', {x: 0, y: 0})
-  let matrixToTestAgainst = tetris._clearMatrix()
+  const matrix = tetris._createNewPiece(tetris._clearMatrix(), 'T', { x: 0, y: 0 })
+  const matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[0][0] = 6
   matrixToTestAgainst[0][1] = 6
   matrixToTestAgainst[0][2] = 6
@@ -105,8 +105,8 @@ test('Matrix with T at 0,0', (t) => {
 })
 
 test('Matrix with Z at 0,0', (t) => {
-  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'Z', {x: 0, y: 0})
-  let matrixToTestAgainst = tetris._clearMatrix()
+  const matrix = tetris._createNewPiece(tetris._clearMatrix(), 'Z', { x: 0, y: 0 })
+  const matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[0][0] = 7
   matrixToTestAgainst[0][1] = 7
   matrixToTestAgainst[1][1] = 7
@@ -115,8 +115,8 @@ test('Matrix with Z at 0,0', (t) => {
 })
 
 test('Matrix with piece outside 0,0', (t) => {
-  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'I', {x: 5, y: 6})
-  let matrixToTestAgainst = tetris._clearMatrix()
+  const matrix = tetris._createNewPiece(tetris._clearMatrix(), 'I', { x: 5, y: 6 })
+  const matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[5][6] = 1
   matrixToTestAgainst[6][6] = 1
   matrixToTestAgainst[7][6] = 1
@@ -125,13 +125,13 @@ test('Matrix with piece outside 0,0', (t) => {
 })
 
 test('Matrix with unknow piece', (t) => {
-  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'M', {x: 0, y: 0})
+  const matrix = tetris._createNewPiece(tetris._clearMatrix(), 'M', { x: 0, y: 0 })
   t.deepEqual(tetris._clearMatrix(), matrix)
 })
 
 test('Matrix with piece at origin', (t) => {
-  let matrix = tetris._createNewPiece(tetris._clearMatrix(), 'I')
-  let matrixToTestAgainst = tetris._clearMatrix()
+  const matrix = tetris._createNewPiece(tetris._clearMatrix(), 'I')
+  const matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[0][5] = 1
   matrixToTestAgainst[1][5] = 1
   matrixToTestAgainst[2][5] = 1
@@ -140,55 +140,55 @@ test('Matrix with piece at origin', (t) => {
 })
 
 test('Matrix with first line complete', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[0] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.true(tetris._checkLineComplete(matrix))
 })
 
 test('Matrix with middle line complete', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[10] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.true(tetris._checkLineComplete(matrix))
 })
 
 test('Matrix with last line complete', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.true(tetris._checkLineComplete(matrix))
 })
 
 test('Matrix with line complete with other than 1s', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 6]
   t.true(tetris._checkLineComplete(matrix))
 })
 
 test('Matrix with line almost complete - first is 0', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[19] = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.false(tetris._checkLineComplete(matrix))
 })
 
 test('Matrix with line almost complete - middle is 0', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[19] = [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1]
   t.false(tetris._checkLineComplete(matrix))
 })
 
 test('Matrix with line almost complete - last is 0', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
   t.false(tetris._checkLineComplete(matrix))
 })
 
 test('Matrix with line almost complete - other than 1s', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 0]
   t.false(tetris._checkLineComplete(matrix))
 })
 
 test('Matrix with column complete', (t) => {
-  let matrix = tetris._clearMatrix().map(row => row.map((value, index) => index === 0 ? 1 : 0))
+  const matrix = tetris._clearMatrix().map(row => row.map((value, index) => index === 0 ? 1 : 0))
   t.false(tetris._checkLineComplete(matrix))
 })
 
@@ -197,43 +197,43 @@ test('Calculate points - no line complete', (t) => {
 })
 
 test('Calculate points - line almost complete', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
   t.is(tetris._calculatePointsForLineCompletion(matrix), 0)
 })
 
 test('Calculate points - line almost complete - other than 1s', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 0]
   t.is(tetris._calculatePointsForLineCompletion(matrix), 0)
 })
 
 test('Calculate points - column complete', (t) => {
-  let matrix = tetris._clearMatrix().map(row => row.map((value, index) => index === 0 ? 1 : 0))
+  const matrix = tetris._clearMatrix().map(row => row.map((value, index) => index === 0 ? 1 : 0))
   t.is(tetris._calculatePointsForLineCompletion(matrix), 0)
 })
 
 test('Calculate points - 1 line complete', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.is(tetris._calculatePointsForLineCompletion(matrix), 40)
 })
 
 test('Calculate points - 1 line complete - other than 1s', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 6]
   t.is(tetris._calculatePointsForLineCompletion(matrix), 40)
 })
 
 test('Calculate points - 2 lines complete', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.is(tetris._calculatePointsForLineCompletion(matrix), 100)
 })
 
 test('Calculate points - 3 lines complete', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[17] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
@@ -241,7 +241,7 @@ test('Calculate points - 3 lines complete', (t) => {
 })
 
 test('Calculate points - 4 lines complete', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[16] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[17] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
@@ -250,7 +250,7 @@ test('Calculate points - 4 lines complete', (t) => {
 })
 
 test('Calculate points - more than 4 lines complete', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[15] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[16] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[17] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
@@ -260,12 +260,12 @@ test('Calculate points - more than 4 lines complete', (t) => {
 })
 
 test('Remove complete lines - Simple - without other pieces', (t) => {
-  let matrix = [
+  const matrix = [
     [0, 0],
     [1, 1]
   ]
 
-  let matrixToTestAgainst = [
+  const matrixToTestAgainst = [
     [0, 0],
     [0, 0]
   ]
@@ -274,12 +274,12 @@ test('Remove complete lines - Simple - without other pieces', (t) => {
 })
 
 test('Remove complete lines - Simple - with other pieces', (t) => {
-  let matrix = [
+  const matrix = [
     [1, 0],
     [1, 1]
   ]
 
-  let matrixToTestAgainst = [
+  const matrixToTestAgainst = [
     [0, 0],
     [1, 0]
   ]
@@ -288,32 +288,32 @@ test('Remove complete lines - Simple - with other pieces', (t) => {
 })
 
 test('Remove complete lines - 1 line complete - without other pieces', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.deepEqual(tetris._removeCompleteLines(matrix), tetris._clearMatrix())
 })
 
 test('Remove complete lines - 1 line complete - other than 1s - without other pieces', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 6]
   t.deepEqual(tetris._removeCompleteLines(matrix), tetris._clearMatrix())
 })
 
 test('Remove complete lines - 2 lines complete - without other pieces', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   t.deepEqual(tetris._removeCompleteLines(matrix), tetris._clearMatrix())
 })
 
 test('Remove complete lines - 1 lines complete - with other pieces', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[16] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
   matrix[17] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
-  let matrixToTestAgainst = tetris._clearMatrix()
+  const matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[18] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
   matrixToTestAgainst[19] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
 
@@ -321,12 +321,12 @@ test('Remove complete lines - 1 lines complete - with other pieces', (t) => {
 })
 
 test('Remove complete lines - 1 line complete - other than 1s - with other pieces', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[17] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
   matrix[18] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
   matrix[19] = [2, 2, 2, 3, 3, 5, 4, 4, 5, 2, 2, 6]
 
-  let matrixToTestAgainst = tetris._clearMatrix()
+  const matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[18] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
   matrixToTestAgainst[19] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
 
@@ -334,13 +334,13 @@ test('Remove complete lines - 1 line complete - other than 1s - with other piece
 })
 
 test('Remove complete lines - 2 lines complete - with other pieces', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[16] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
   matrix[17] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
-  let matrixToTestAgainst = tetris._clearMatrix()
+  const matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[18] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
   matrixToTestAgainst[19] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
 
@@ -348,13 +348,13 @@ test('Remove complete lines - 2 lines complete - with other pieces', (t) => {
 })
 
 test('Remove complete lines - Simple - with pieces below', (t) => {
-  let matrix = [
+  const matrix = [
     [1, 0],
     [1, 1],
     [1, 0]
   ]
 
-  let matrixToTestAgainst = [
+  const matrixToTestAgainst = [
     [0, 0],
     [1, 0],
     [1, 0]
@@ -364,14 +364,14 @@ test('Remove complete lines - Simple - with pieces below', (t) => {
 })
 
 test('Remove complete lines - 1 lines complete - with pieces below', (t) => {
-  let matrix = tetris._clearMatrix()
+  const matrix = tetris._clearMatrix()
   matrix[15] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
   matrix[16] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
   matrix[17] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[18] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   matrix[19] = [0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1]
 
-  let matrixToTestAgainst = tetris._clearMatrix()
+  const matrixToTestAgainst = tetris._clearMatrix()
   matrixToTestAgainst[17] = [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]
   matrixToTestAgainst[18] = [1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
   matrixToTestAgainst[19] = [0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1]
@@ -380,7 +380,7 @@ test('Remove complete lines - 1 lines complete - with pieces below', (t) => {
 })
 
 test('Gravity - Simple Test', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [1, 0],
       [1, 0],
@@ -388,11 +388,11 @@ test('Gravity - Simple Test', (t) => {
       [1, 0],
       [0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'I'
   }
 
-  let playerToTestAgainst = {
+  const playerToTestAgainst = {
     matrix: [
       [0, 0],
       [1, 0],
@@ -400,7 +400,7 @@ test('Gravity - Simple Test', (t) => {
       [1, 0],
       [1, 0]
     ],
-    piecePos: {x: 1, y: 0},
+    piecePos: { x: 1, y: 0 },
     piece: 'I'
   }
 
@@ -408,7 +408,7 @@ test('Gravity - Simple Test', (t) => {
 })
 
 test('Gravity - Other pieces on board', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [1, 0, 0, 2],
       [1, 0, 0, 2],
@@ -416,11 +416,11 @@ test('Gravity - Other pieces on board', (t) => {
       [1, 0, 0, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'I'
   }
 
-  let playerToTestAgainst = {
+  const playerToTestAgainst = {
     matrix: [
       [0, 0, 0, 2],
       [1, 0, 0, 2],
@@ -428,7 +428,7 @@ test('Gravity - Other pieces on board', (t) => {
       [1, 0, 0, 0],
       [1, 0, 0, 0]
     ],
-    piecePos: {x: 1, y: 0},
+    piecePos: { x: 1, y: 0 },
     piece: 'I'
   }
 
@@ -436,7 +436,7 @@ test('Gravity - Other pieces on board', (t) => {
 })
 
 test('Gravity - Other pieces near', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [1, 0, 2, 0],
       [1, 0, 2, 0],
@@ -444,11 +444,11 @@ test('Gravity - Other pieces near', (t) => {
       [1, 0, 0, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'I'
   }
 
-  let playerToTestAgainst = {
+  const playerToTestAgainst = {
     matrix: [
       [0, 0, 2, 0],
       [1, 0, 2, 0],
@@ -456,7 +456,7 @@ test('Gravity - Other pieces near', (t) => {
       [1, 0, 0, 0],
       [1, 0, 0, 0]
     ],
-    piecePos: {x: 1, y: 0},
+    piecePos: { x: 1, y: 0 },
     piece: 'I'
   }
 
@@ -464,7 +464,7 @@ test('Gravity - Other pieces near', (t) => {
 })
 
 test('Gravity - Pieces with same color near', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [1, 1],
       [1, 1],
@@ -472,11 +472,11 @@ test('Gravity - Pieces with same color near', (t) => {
       [1, 1],
       [0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'I'
   }
 
-  let playerToTestAgainst = {
+  const playerToTestAgainst = {
     matrix: [
       [0, 1],
       [1, 1],
@@ -484,7 +484,7 @@ test('Gravity - Pieces with same color near', (t) => {
       [1, 1],
       [1, 0]
     ],
-    piecePos: {x: 1, y: 0},
+    piecePos: { x: 1, y: 0 },
     piece: 'I'
   }
 
@@ -492,7 +492,7 @@ test('Gravity - Pieces with same color near', (t) => {
 })
 
 test('Gravity - Pieces with same color near - move the other', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [1, 1],
       [1, 1],
@@ -500,11 +500,11 @@ test('Gravity - Pieces with same color near - move the other', (t) => {
       [1, 1],
       [0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'I'
   }
 
-  let playerToTestAgainst = {
+  const playerToTestAgainst = {
     matrix: [
       [1, 0],
       [1, 1],
@@ -512,7 +512,7 @@ test('Gravity - Pieces with same color near - move the other', (t) => {
       [1, 1],
       [0, 1]
     ],
-    piecePos: {x: 1, y: 1},
+    piecePos: { x: 1, y: 1 },
     piece: 'I'
   }
 
@@ -520,7 +520,7 @@ test('Gravity - Pieces with same color near - move the other', (t) => {
 })
 
 test('Collision - Simple Test - False', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [1, 0],
       [1, 0],
@@ -528,7 +528,7 @@ test('Collision - Simple Test - False', (t) => {
       [1, 0],
       [0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'I'
   }
 
@@ -536,7 +536,7 @@ test('Collision - Simple Test - False', (t) => {
 })
 
 test('Collision - Simple Test - True', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 0],
       [1, 0],
@@ -544,7 +544,7 @@ test('Collision - Simple Test - True', (t) => {
       [1, 0],
       [1, 0]
     ],
-    piecePos: {x: 1, y: 0},
+    piecePos: { x: 1, y: 0 },
     piece: 'I'
   }
 
@@ -552,7 +552,7 @@ test('Collision - Simple Test - True', (t) => {
 })
 
 test('Collision - With another piece - True', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [1, 0],
       [1, 0],
@@ -560,7 +560,7 @@ test('Collision - With another piece - True', (t) => {
       [1, 0],
       [2, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'I'
   }
 
@@ -568,7 +568,7 @@ test('Collision - With another piece - True', (t) => {
 })
 
 test('Collision - With another piece - False', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [1, 0],
       [1, 0],
@@ -576,7 +576,7 @@ test('Collision - With another piece - False', (t) => {
       [1, 0],
       [0, 2]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'I'
   }
 
@@ -584,7 +584,7 @@ test('Collision - With another piece - False', (t) => {
 })
 
 test('Collision - Lateral - False', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [1, 0],
       [1, 0],
@@ -592,7 +592,7 @@ test('Collision - Lateral - False', (t) => {
       [1, 0],
       [0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'I'
   }
 
@@ -600,7 +600,7 @@ test('Collision - Lateral - False', (t) => {
 })
 
 test('Collision - Lateral - True', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [1, 0],
       [1, 0],
@@ -608,7 +608,7 @@ test('Collision - Lateral - True', (t) => {
       [1, 0],
       [0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'I'
   }
 
@@ -616,7 +616,7 @@ test('Collision - Lateral - True', (t) => {
 })
 
 test('Collision - Lateral with another piece - False', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [1, 0],
       [1, 0],
@@ -624,7 +624,7 @@ test('Collision - Lateral with another piece - False', (t) => {
       [1, 0],
       [0, 2]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'I'
   }
 
@@ -632,7 +632,7 @@ test('Collision - Lateral with another piece - False', (t) => {
 })
 
 test('Collision - Lateral with another piece - True', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [1, 0],
       [1, 0],
@@ -640,7 +640,7 @@ test('Collision - Lateral with another piece - True', (t) => {
       [1, 2],
       [0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'I'
   }
 
@@ -648,7 +648,7 @@ test('Collision - Lateral with another piece - True', (t) => {
 })
 
 test('Move - Simple Test', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [1, 0],
       [1, 0],
@@ -656,11 +656,11 @@ test('Move - Simple Test', (t) => {
       [1, 0],
       [0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'I'
   }
 
-  let playerToTestAgainst = {
+  const playerToTestAgainst = {
     matrix: [
       [0, 1],
       [0, 1],
@@ -668,7 +668,7 @@ test('Move - Simple Test', (t) => {
       [0, 1],
       [0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'I'
   }
 
@@ -676,7 +676,7 @@ test('Move - Simple Test', (t) => {
 })
 
 test('Move - Other pieces on board', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [1, 0, 0, 2],
       [1, 0, 0, 2],
@@ -684,11 +684,11 @@ test('Move - Other pieces on board', (t) => {
       [1, 0, 0, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'I'
   }
 
-  let playerToTestAgainst = {
+  const playerToTestAgainst = {
     matrix: [
       [0, 1, 0, 2],
       [0, 1, 0, 2],
@@ -696,7 +696,7 @@ test('Move - Other pieces on board', (t) => {
       [0, 1, 0, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'I'
   }
 
@@ -704,7 +704,7 @@ test('Move - Other pieces on board', (t) => {
 })
 
 test('Move - Other pieces near', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [1, 0, 2, 0],
       [1, 0, 2, 0],
@@ -712,11 +712,11 @@ test('Move - Other pieces near', (t) => {
       [1, 0, 0, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'I'
   }
 
-  let playerToTestAgainst = {
+  const playerToTestAgainst = {
     matrix: [
       [0, 1, 2, 0],
       [0, 1, 2, 0],
@@ -724,7 +724,7 @@ test('Move - Other pieces near', (t) => {
       [0, 1, 0, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'I'
   }
 
@@ -732,25 +732,25 @@ test('Move - Other pieces near', (t) => {
 })
 
 test('Move - Pieces with same color near', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [1, 0, 1],
       [1, 0, 1],
       [1, 0, 1],
       [1, 0, 1]
     ],
-    piecePos: {x: 0, y: 2},
+    piecePos: { x: 0, y: 2 },
     piece: 'I'
   }
 
-  let playerToTestAgainst = {
+  const playerToTestAgainst = {
     matrix: [
       [1, 1, 0],
       [1, 1, 0],
       [1, 1, 0],
       [1, 1, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'I'
   }
 
@@ -758,26 +758,26 @@ test('Move - Pieces with same color near', (t) => {
 })
 
 test('Rotate - I - 1', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 1, 0, 0],
       [0, 1, 0, 0],
       [0, 1, 0, 0],
       [0, 1, 0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'I',
     pieceRotation: 0
   }
 
-  let playerRotation1 = {
+  const playerRotation1 = {
     matrix: [
       [0, 0, 0, 0],
       [1, 1, 1, 1],
       [0, 0, 0, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'I',
     pieceRotation: 1
   }
@@ -785,26 +785,26 @@ test('Rotate - I - 1', (t) => {
 })
 
 test('Rotate - I - 2', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 1, 0, 0],
       [0, 1, 0, 0],
       [0, 1, 0, 0],
       [0, 1, 0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'I',
     pieceRotation: 0
   }
 
-  let playerRotation2 = {
+  const playerRotation2 = {
     matrix: [
       [0, 1, 0, 0],
       [0, 1, 0, 0],
       [0, 1, 0, 0],
       [0, 1, 0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'I',
     pieceRotation: 2
   }
@@ -812,26 +812,26 @@ test('Rotate - I - 2', (t) => {
 })
 
 test('Rotate - I - 3', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 1, 0, 0],
       [0, 1, 0, 0],
       [0, 1, 0, 0],
       [0, 1, 0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'I',
     pieceRotation: 0
   }
 
-  let playerRotation3 = {
+  const playerRotation3 = {
     matrix: [
       [0, 0, 0, 0],
       [1, 1, 1, 1],
       [0, 0, 0, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'I',
     pieceRotation: 3
   }
@@ -839,26 +839,26 @@ test('Rotate - I - 3', (t) => {
 })
 
 test('Rotate - I - 4', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 1, 0, 0],
       [0, 1, 0, 0],
       [0, 1, 0, 0],
       [0, 1, 0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'I',
     pieceRotation: 0
   }
 
-  let playerRotation4 = {
+  const playerRotation4 = {
     matrix: [
       [0, 1, 0, 0],
       [0, 1, 0, 0],
       [0, 1, 0, 0],
       [0, 1, 0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'I',
     pieceRotation: 0
   }
@@ -866,26 +866,26 @@ test('Rotate - I - 4', (t) => {
 })
 
 test('Rotate - J - 1', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 2, 0, 0],
       [0, 2, 0, 0],
       [2, 2, 0, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'J',
     pieceRotation: 0
   }
 
-  let playerRotation1 = {
+  const playerRotation1 = {
     matrix: [
       [2, 0, 0, 0],
       [2, 2, 2, 0],
       [0, 0, 0, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'J',
     pieceRotation: 1
   }
@@ -893,26 +893,26 @@ test('Rotate - J - 1', (t) => {
 })
 
 test('Rotate - J - 2', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 2, 0, 0],
       [0, 2, 0, 0],
       [2, 2, 0, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'J',
     pieceRotation: 0
   }
 
-  let playerRotation1 = {
+  const playerRotation1 = {
     matrix: [
       [0, 2, 2, 0],
       [0, 2, 0, 0],
       [0, 2, 0, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'J',
     pieceRotation: 2
   }
@@ -920,26 +920,26 @@ test('Rotate - J - 2', (t) => {
 })
 
 test('Rotate - J - 3', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 2, 0, 0],
       [0, 2, 0, 0],
       [2, 2, 0, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'J',
     pieceRotation: 0
   }
 
-  let playerRotation1 = {
+  const playerRotation1 = {
     matrix: [
       [0, 0, 0, 0],
       [2, 2, 2, 0],
       [0, 0, 2, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'J',
     pieceRotation: 3
   }
@@ -947,26 +947,26 @@ test('Rotate - J - 3', (t) => {
 })
 
 test('Rotate - L - 1', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 3, 0, 0],
       [0, 3, 0, 0],
       [0, 3, 3, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'L',
     pieceRotation: 0
   }
 
-  let playerRotation1 = {
+  const playerRotation1 = {
     matrix: [
       [0, 0, 0, 0],
       [3, 3, 3, 0],
       [3, 0, 0, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'L',
     pieceRotation: 1
   }
@@ -974,26 +974,26 @@ test('Rotate - L - 1', (t) => {
 })
 
 test('Rotate - L - 2', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 3, 0, 0],
       [0, 3, 0, 0],
       [0, 3, 3, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'L',
     pieceRotation: 0
   }
 
-  let playerRotation1 = {
+  const playerRotation1 = {
     matrix: [
       [3, 3, 0, 0],
       [0, 3, 0, 0],
       [0, 3, 0, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'L',
     pieceRotation: 2
   }
@@ -1001,26 +1001,26 @@ test('Rotate - L - 2', (t) => {
 })
 
 test('Rotate - L - 3', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 3, 0, 0],
       [0, 3, 0, 0],
       [0, 3, 3, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'L',
     pieceRotation: 0
   }
 
-  let playerRotation1 = {
+  const playerRotation1 = {
     matrix: [
       [0, 0, 3, 0],
       [3, 3, 3, 0],
       [0, 0, 0, 0],
       [0, 0, 0, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'L',
     pieceRotation: 3
   }
@@ -1028,24 +1028,24 @@ test('Rotate - L - 3', (t) => {
 })
 
 test('Rotate - O', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [4, 4, 0],
       [4, 4, 0],
       [0, 0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'O',
     pieceRotation: 0
   }
 
-  let playerRotation1 = {
+  const playerRotation1 = {
     matrix: [
       [4, 4, 0],
       [4, 4, 0],
       [0, 0, 0]
     ],
-    piecePos: {x: 0, y: 0},
+    piecePos: { x: 0, y: 0 },
     piece: 'O',
     pieceRotation: 1
   }
@@ -1053,26 +1053,26 @@ test('Rotate - O', (t) => {
 })
 
 test('Rotate - S - 1', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 0, 0],
       [0, 5, 5],
       [5, 5, 0],
       [0, 0, 0]
     ],
-    piecePos: {x: 1, y: 0},
+    piecePos: { x: 1, y: 0 },
     piece: 'S',
     pieceRotation: 0
   }
 
-  let playerRotation1 = {
+  const playerRotation1 = {
     matrix: [
       [5, 0, 0],
       [5, 5, 0],
       [0, 5, 0],
       [0, 0, 0]
     ],
-    piecePos: {x: 1, y: 0},
+    piecePos: { x: 1, y: 0 },
     piece: 'S',
     pieceRotation: 1
   }
@@ -1080,24 +1080,24 @@ test('Rotate - S - 1', (t) => {
 })
 
 test('Rotate - T - 1', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 0, 0],
       [6, 6, 6],
       [0, 6, 0]
     ],
-    piecePos: {x: 1, y: 0},
+    piecePos: { x: 1, y: 0 },
     piece: 'T',
     pieceRotation: 0
   }
 
-  let playerRotation1 = {
+  const playerRotation1 = {
     matrix: [
       [0, 6, 0],
       [6, 6, 0],
       [0, 6, 0]
     ],
-    piecePos: {x: 1, y: 0},
+    piecePos: { x: 1, y: 0 },
     piece: 'T',
     pieceRotation: 1
   }
@@ -1105,24 +1105,24 @@ test('Rotate - T - 1', (t) => {
 })
 
 test('Rotate - T - 2', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 0, 0],
       [6, 6, 6],
       [0, 6, 0]
     ],
-    piecePos: {x: 1, y: 0},
+    piecePos: { x: 1, y: 0 },
     piece: 'T',
     pieceRotation: 0
   }
 
-  let playerRotation1 = {
+  const playerRotation1 = {
     matrix: [
       [0, 6, 0],
       [6, 6, 6],
       [0, 0, 0]
     ],
-    piecePos: {x: 1, y: 0},
+    piecePos: { x: 1, y: 0 },
     piece: 'T',
     pieceRotation: 2
   }
@@ -1130,24 +1130,24 @@ test('Rotate - T - 2', (t) => {
 })
 
 test('Rotate - T - 3', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 0, 0],
       [6, 6, 6],
       [0, 6, 0]
     ],
-    piecePos: {x: 1, y: 0},
+    piecePos: { x: 1, y: 0 },
     piece: 'T',
     pieceRotation: 0
   }
 
-  let playerRotation1 = {
+  const playerRotation1 = {
     matrix: [
       [0, 6, 0],
       [0, 6, 6],
       [0, 6, 0]
     ],
-    piecePos: {x: 1, y: 0},
+    piecePos: { x: 1, y: 0 },
     piece: 'T',
     pieceRotation: 3
   }
@@ -1155,26 +1155,26 @@ test('Rotate - T - 3', (t) => {
 })
 
 test('Rotate - Z - 1', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 0, 0],
       [7, 7, 0],
       [0, 7, 7],
       [0, 0, 0]
     ],
-    piecePos: {x: 1, y: 0},
+    piecePos: { x: 1, y: 0 },
     piece: 'Z',
     pieceRotation: 0
   }
 
-  let playerRotation1 = {
+  const playerRotation1 = {
     matrix: [
       [0, 7, 0],
       [7, 7, 0],
       [7, 0, 0],
       [0, 0, 0]
     ],
-    piecePos: {x: 1, y: 0},
+    piecePos: { x: 1, y: 0 },
     piece: 'Z',
     pieceRotation: 1
   }
@@ -1182,14 +1182,14 @@ test('Rotate - Z - 1', (t) => {
 })
 
 test('Fail Rotate - I - 1 - with other I', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 1, 1, 0],
       [0, 1, 1, 0],
       [0, 1, 1, 0],
       [0, 1, 1, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'I',
     pieceRotation: 0
   }
@@ -1197,14 +1197,14 @@ test('Fail Rotate - I - 1 - with other I', (t) => {
 })
 
 test('Fail Rotate - I - 1 - with other pieces', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 1, 2, 0],
       [0, 1, 3, 0],
       [0, 1, 4, 0],
       [0, 1, 5, 0]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'I',
     pieceRotation: 0
   }
@@ -1212,14 +1212,14 @@ test('Fail Rotate - I - 1 - with other pieces', (t) => {
 })
 
 test('Fail Rotate - I - 1 - near border', (t) => {
-  let player = {
+  const player = {
     matrix: [
       [0, 1],
       [0, 1],
       [0, 1],
       [0, 1]
     ],
-    piecePos: {x: 0, y: 1},
+    piecePos: { x: 0, y: 1 },
     piece: 'I',
     pieceRotation: 0
   }

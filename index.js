@@ -16,7 +16,7 @@ const nextPieceCtx = initCanvas('tetris-nextPiece-canvas')
 let state
 init()
 
-function init (restart = false, state) {
+function init (restart = false) {
   drawButton(restart)
   bindStartGame()
 
