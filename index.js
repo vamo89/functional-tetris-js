@@ -32,12 +32,15 @@ function init (restart = false) {
     }
   }
 }
+
 function bindStartGame () {
   ctx.canvas.addEventListener('click', startGame)
 }
+
 function unbindStartGame () {
   ctx.canvas.removeEventListener('click', startGame)
 }
+
 function initCanvas (canvasId) {
   const ctx = document.getElementById(canvasId).getContext('2d')
   ctx.scale(20, 20)
@@ -51,9 +54,11 @@ function doUserEventAndRedraw (event) {
   state = tetris.userEvent(state, event.code)
   redraw(ctx, state)
 }
+
 function bindUserEvents () {
   document.addEventListener('keydown', doUserEventAndRedraw)
 }
+
 function unbindUserEvents () {
   document.removeEventListener('keydown', doUserEventAndRedraw)
 }
@@ -67,6 +72,7 @@ function startGame () {
   bindUserEvents()
   loop()
 }
+
 function loop (time = 0) {
   state = tetris.tick(state, time)
   redraw(ctx, state)
@@ -77,6 +83,7 @@ function loop (time = 0) {
     init(true, state)
   }
 }
+
 function redraw (ctx, state) {
   ctx.clearRect(0, 0, maxWidth, maxHeight)
   draw(ctx, state.player.matrix)
@@ -95,6 +102,7 @@ function redraw (ctx, state) {
       })
     )
   }
+
   function drawPoints (playerPoints) {
     pointsElem.innerText = 'Points: ' + playerPoints
   }
