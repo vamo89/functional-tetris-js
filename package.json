@@ -8,8 +8,13 @@
     "watch:test": "ava --watch",
     "lint": "standard",
     "dev": "webpack-dev-server --open --hot",
-    "build": "webpack",
+    "build": "webpack --mode=production",
     "validate": "npm ls"
+  },
+  "standard": {
+    "ignore": [
+      "dist/"
+    ]
   },
   "keywords": [],
   "author": "Victor Oliveira",
@@ -17,6 +22,11 @@
   "pre-commit": [
     "test",
     "lint"
+  ],
+  "pre-push": [
+    "test",
+    "lint",
+    "build"
   ],
   "devDependencies": {
     "ava": "^3.5.1",
